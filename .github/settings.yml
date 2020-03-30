@@ -1,0 +1,11 @@
+# Probot Settings (https://github.com/probot/settings)
+#
+# Base probot config files are located at https://github.com/routegy/routegy-probot-config
+
+_extends: routegy-probot-config
+
+repository:
+  name: routegy-docs-api
+  private: false
+  description: Public API documentation for Routegy
+  homepage: https://api.docs.routegy.com

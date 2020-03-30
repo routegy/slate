@@ -1,0 +1,9 @@
+# Probot Config (https://github.com/probot/probot-config)
+#
+# Base probot config files are located at https://github.com/routegy/routegy-probot-config
+
+_extends: routegy-probot-config
+
+# https://github.com/JasonEtco/todo
+todo:
+  exclude: '^\.yarn'
