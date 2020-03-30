@@ -1,0 +1,1123 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Routegy API",
+    "description": "Welcome to the Routegy API docs!\n\nThese documents include both the Management API and the Public API.\n\nFor more information, be sure to check out our documentation website at <https://docs.routegy.com>.",
+    "termsOfService": "https://www.routegy.com/terms-of-service/",
+    "contact": {
+      "email": "support@routegy.com"
+    },
+    "version": "v1",
+    "externalDocs": {
+      "description": "Find out more at our docs website",
+      "url": "https://docs.routegy.com"
+    }
+  },
+  "host": "api.routegy.com",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-ROUTEGY-API-KEY"
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": [
+
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Public API",
+      "description": "Operations for the Public API.",
+      "externalDocs": { "url": "https://docs.routegy.com/topic/public-api/" }
+    },
+    {
+      "name": "Management API",
+      "description": "Operations for the Management API.",
+      "externalDocs": { "url": "https://docs.routegy.com/topic/management-api/" }
+    },
+    {
+      "name": "Codes",
+      "description": "Operations related to Codes.",
+      "externalDocs": { "url": "https://docs.routegy.com/topic/codes/" }
+    },
+    {
+      "name": "Organizations",
+      "description": "Operations related to Organizations.",
+      "externalDocs": { "url": "https://docs.routegy.com/topic/organizations/" }
+    }
+  ],
+  "paths": {
+    "/public/codes/{short_id}/touchpoint": {
+      "get": {
+        "operationId": "public_codes_touchpoint",
+        "summary": "Get touchpoint from a code short id",
+        "description": "Get touchpoint from code short id.",
+        "parameters": [
+
+        ],
+        "security": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/GetCodeTouchPointResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Public API",
+          "Codes"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "short_id",
+          "in": "path",
+          "description": "A short ID identifying this code.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/public/codes/{short_id}/touch": {
+      "post": {
+        "operationId": "public_codes_touch",
+        "summary": "Create touch for a touchpoint from a code short id",
+        "description": "Create a new touch for a touchpoint referenced from a code short id.",
+        "parameters": [
+
+        ],
+        "security": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": { "$ref": "#/definitions/CodeTouchCreatedResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Public API",
+          "Codes"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "short_id",
+          "in": "path",
+          "description": "A short ID identifying this code.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/codes/{id}": {
+      "get": {
+        "operationId": "get_code_by_id",
+        "summary": "Get code by id",
+        "description": "Get code by its ID. \n\n Check out the [Topic: Code](https://docs.routegy.com/topic/codes/) and [Reference: Code](https://docs.routegy.com/reference/codes/) pages for more information.",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/GetCodeResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Codes"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A UUID string identifying this code.",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }
+      ]
+    },
+    "/codes/{short_id}": {
+      "get": {
+        "operationId": "get_code_by_short_id",
+        "summary": "Get code by short id",
+        "description": "Get code by its short ID. \n\n Check out the [Topic: Code](https://docs.routegy.com/topic/codes/) and [Reference: Code](https://docs.routegy.com/reference/codes/) pages for more information.",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/GetCodeResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Codes"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "short_id",
+          "in": "path",
+          "description": "A short ID identifying this code.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/organizations": {
+      "get": {
+        "operationId": "list_organizations",
+        "summary": "List organizations",
+        "description": "List all organizations for the authenticated user.\n\n**Related:**\n* [Topic: Organization](https://docs.routegy.com/topic/organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations/)",
+        "parameters": [
+          { "$ref": "#/components/parameters/min_created_at" },
+          { "$ref": "#/components/parameters/max_created_at" },
+          { "$ref": "#/components/parameters/min_updated_at" },
+          { "$ref": "#/components/parameters/max_updated_at" },
+          { "$ref": "#/components/parameters/slug" },
+          { "$ref": "#/components/parameters/slug_regex" },
+          { "$ref": "#/components/parameters/name" },
+          { "$ref": "#/components/parameters/name_regex" },
+          { "$ref": "#/components/parameters/order_by" },
+          { "$ref": "#/components/parameters/search" },
+          { "$ref": "#/components/parameters/cursor" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/ListOrganizationsResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Organizations"
+        ]
+      },
+      "post": {
+        "operationId": "create_organization",
+        "summary": "Create new organization",
+        "description": "Create a new organization.\n\n**Related:**\n* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)\n* [Topic: Organization](https://docs.routegy.com/topic/organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations/)",
+        "parameters": [
+          {
+            "name": "data",
+            "description": "Object defining the resource to create",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateOrganizationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": { "$ref": "#/definitions/CreateOrganizationResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Organizations"
+        ]
+      },
+      "parameters": [
+
+      ]
+    }
+  },
+  "definitions": {
+    "BadRequestResponse": {
+      "type": "object",
+      "description": "Response body when bad request is received",
+      "properties": {
+        "detail": {
+          "title": "Detail",
+          "description": "Details about the error",
+          "type": "string",
+          "readOnly": true
+        },
+        "status_code": {
+          "title": "Status Code",
+          "description": "HTTP status code of the error",
+          "type": "integer",
+          "readOnly": true
+        },
+        "error_id": {
+          "title": "Error ID",
+          "description": "ID of the error for external tracking",
+          "type": "integer",
+          "readOnly": true,
+          "x-nullable": true
+        }
+      },
+      "additionalProperties": true,
+      "example": {
+        "detail": "Bad Request.",
+        "status_code": 400,
+        "error_id": null
+      }
+    },
+    "UnauthorizedResponse": {
+      "type": "object",
+      "description": "Response body when request lacks valid authentication credentials",
+      "properties": {
+        "detail": {
+          "title": "Detail",
+          "description": "Details about the error",
+          "type": "string",
+          "readOnly": true
+        },
+        "status_code": {
+          "title": "Status Code",
+          "description": "HTTP status code of the error",
+          "type": "integer",
+          "readOnly": true
+        },
+        "error_id": {
+          "title": "Error ID",
+          "description": "ID of the error for external tracking",
+          "type": "integer",
+          "readOnly": true,
+          "x-nullable": true
+        }
+      },
+      "additionalProperties": true,
+      "example": {
+        "detail": "Unauthenticated.",
+        "status_code": 401,
+        "error_id": null
+      }
+    },
+    "ForbiddenResponse": {
+      "type": "object",
+      "description": "Response body when authenticated request does not have authorization to perform action",
+      "properties": {
+        "detail": {
+          "title": "Detail",
+          "description": "Details about the error",
+          "type": "string",
+          "readOnly": true
+        },
+        "status_code": {
+          "title": "Status Code",
+          "description": "HTTP status code of the error",
+          "type": "integer",
+          "readOnly": true
+        },
+        "error_id": {
+          "title": "Error ID",
+          "description": "ID of the error for external tracking",
+          "type": "integer",
+          "readOnly": true,
+          "x-nullable": true
+        }
+      },
+      "additionalProperties": true,
+      "example": {
+        "detail": "Forbidden.",
+        "status_code": 403,
+        "error_id": null
+      }
+    },
+    "NotFoundResponse": {
+      "type": "object",
+      "description": "Response body when requested resource is not found",
+      "properties": {
+        "detail": {
+          "title": "Detail",
+          "description": "Details about the error",
+          "type": "string",
+          "readOnly": true
+        },
+        "status_code": {
+          "title": "Status Code",
+          "description": "HTTP status code of the error",
+          "type": "integer",
+          "readOnly": true
+        },
+        "error_id": {
+          "title": "Error ID",
+          "description": "ID of the error for external tracking",
+          "type": "integer",
+          "readOnly": true,
+          "x-nullable": true
+        }
+      },
+      "additionalProperties": true,
+      "example": {
+        "detail": "Not Found.",
+        "status_code": 404,
+        "error_id": null
+      }
+    },
+    "GetCodeResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "ID of the code",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "description": "URL of the code",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "created_at": {
+          "title": "Created at",
+          "description": "Datetime when the code was created",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "description": "Datetime when the code was last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "short_id": {
+          "title": "Short id",
+          "description": "Short ID to use when referencing the code in the public API",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "touch_point": {
+          "title": "Touch point",
+          "description": "ID of the touchpoint for the code",
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "example": {
+        "id": "5C74E22E-D7ED-497E-8DE3-09FF4E9AEBEC",
+        "url": "https://api.routegy.com/codes/5C74E22E-D7ED-497E-8DE3-09FF4E9AEBEC",
+        "created_at": "2020-03-27T23:09:35+0000",
+        "updated_at": "2020-03-27T23:09:35+0000",
+        "short_id": "ax7dkEg",
+        "touch_point": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
+      }
+    },
+    "CodeTouchCreatedResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "ID of the touch that was created",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        }
+      },
+      "example": {
+        "id": "5A29D4AB-99AE-49A7-810B-CDA71FBBF9ED"
+      }
+    },
+    "GetCodeTouchPointResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "description": "Name of the touchpoint",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "description": "Description of the touchpoint",
+          "maxLength": 2048
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string",
+          "description": "Slug of the touchpoint",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "location": {
+          "type": "object",
+          "title": "Location",
+          "description": "Location of the touchpoint",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "string",
+              "description": "Name of the location",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "description": {
+              "title": "Description",
+              "type": "string",
+              "description": "Description of the location",
+              "maxLength": 2048
+            },
+            "slug": {
+              "title": "Slug",
+              "type": "string",
+              "description": "Slug of the location",
+              "format": "slug",
+              "pattern": "^[-a-zA-Z0-9_]+$",
+              "readOnly": true,
+              "minLength": 1
+            }
+          }
+        },
+        "schema": {
+          "type": "object",
+          "title": "Schema",
+          "description": "Schema of the touchpoint",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "string",
+              "description": "Name of the schema",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "description": {
+              "title": "Description",
+              "type": "string",
+              "description": "Description of the schema",
+              "maxLength": 2048
+            },
+            "slug": {
+              "title": "Slug",
+              "type": "string",
+              "description": "Slug of the schema",
+              "format": "slug",
+              "pattern": "^[-a-zA-Z0-9_]+$",
+              "readOnly": true,
+              "minLength": 1
+            },
+            "document": {
+              "title": "Document",
+              "type": "object",
+              "description": "JSON Schema document of the schema",
+              "additionalProperties": true,
+              "properties": {
+                "type": {
+                  "title": "Type",
+                  "type": "string",
+                  "description": "Type of JSON Schema object",
+                  "minLength": 1
+                },
+                "title": {
+                  "title": "Title",
+                  "type": "string",
+                  "description": "Title of JSON Schema object",
+                  "minLength": 1
+                },
+                "required": {
+                  "title": "Required",
+                  "type": "array",
+                  "description": "Required properties of JSON Schema object"
+                },
+                "properties": {
+                  "title": "Properties",
+                  "type": "object",
+                  "description": "Properties of JSON Schema object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "example": {
+        "name": "Out of coffee?",
+        "slug": "out-of-coffee",
+        "description": "Let us know so we can refill the pot",
+        "location": {
+          "name": "Break room",
+          "slug": "break-room",
+          "description": "Employee break room"
+        },
+        "schema": {
+          "name": "Coffee Machine",
+          "slug": "coffee-machine",
+          "description": "Report supply chain issues related to coffee machines",
+          "document": {
+            "type": "object",
+            "title": "Out of coffee?",
+            "required": [
+              "problem"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "problem": [
+                "No coffee beans",
+                "No filters",
+                "No cups",
+                "Machine isn't working",
+                "Something else"
+              ],
+              "type": "string",
+              "attrs": {
+                "type": "radio"
+              },
+              "title": "What is the problem?",
+              "comments": {
+                "type": "string",
+                "attrs": {
+                  "type": "textarea",
+                  "placeholder": "Please provide any additional comments here"
+                },
+                "title": "Additional comments"
+              }
+            }
+          }
+        }
+      }
+    },
+    "ListOrganizationsResponse": {
+      "type": "object",
+      "description": "Response containing a list of organizations",
+      "properties": {
+        "next": {
+          "type": "string",
+          "description": "URL to next page of results",
+          "format": "uri",
+          "x-nullable": true
+        },
+        "previous": {
+          "type": "string",
+          "description": "URL to previous page of results",
+          "format": "uri",
+          "x-nullable": true
+        },
+        "results": {
+          "type": "array",
+          "description": "Array containing page of results",
+          "items": {
+            "$ref": "#/definitions/ListOrganizationResponse"
+          }
+        }
+      },
+      "example": {
+        "next": "https://api.routegy.com/organizations?next=XXXXXX",
+        "previous": null,
+        "items": [
+          {
+            "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+            "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+            "name": "My Test Organization",
+            "slug": "my-test-organization",
+            "description": "Organization where I test things"
+          }
+        ]
+      }
+    },
+    "ListOrganizationResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "ID of the organization",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "description": "URL of the organization",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "description": "Slug of the organization",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the organization",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        }
+      },
+      "example": {
+        "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "name": "My Test Organization",
+        "slug": "my-test-organization",
+        "description": "Organization where I test things"
+      }
+    },
+    "CreateOrganizationRequest": {
+      "required": [
+        "name",
+        "owner",
+        "plan"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "description": "Name of the organization",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "description": "Description of the organization",
+          "maxLength": 2048
+        },
+        "owner": {
+          "title": "Owner",
+          "type": "string",
+          "description": "User that is the owner of this organization",
+          "format": "uuid"
+        },
+        "plan": {
+          "title": "Plan",
+          "type": "string",
+          "description": "Plan to use for this organization",
+          "format": "uuid"
+        }
+      },
+      "example": {
+        "name": "My Test Organization",
+        "description": "Organization where I test things",
+        "owner": "A56C801E-D814-41E0-8A4F-70FBF25B7C13",
+        "plan": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D"
+      }
+    },
+    "CreateOrganizationResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "ID of the organization",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "description": "URL of the organization",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "created_at": {
+          "title": "Created at",
+          "description": "Datetime when organization was created",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "description": "Datetime when organization was last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "description": "Slug of the organization",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the organization",
+          "type": "string",
+          "maxLength": 2048
+        },
+        "owner": {
+          "title": "Owner",
+          "description": "User who owns this organization",
+          "type": "object"
+        },
+        "plan": {
+          "title": "Plan",
+          "description": "Plan of the organization",
+          "type": "object"
+        }
+      },
+      "example": {
+        "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "created_at": "2020-03-27T23:09:35+0000",
+        "updated_at": "2020-03-27T23:09:35+0000",
+        "name": "My Test Organization",
+        "slug": "my-test-organization",
+        "description": "Organization where I test things",
+        "owner": {
+          "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+          "name": "John Smith",
+          "email": "john.smith@example.org"
+        },
+        "plan": {
+          "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+          "expires_at": "2020-04-27T23:09:35+0000",
+          "active": true,
+          "plan_type": {
+            "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+            "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+            "name": "Trial",
+            "slug": "trial",
+            "description": "Trial plan that enables limited use of the service",
+            "meta_data": {
+              "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+            },
+            "quotas": [
+              {
+                "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+                "name": "Touchpoints (20)",
+                "slug": "touchpoints-20",
+                "description": "Limit the number of touchpoints to 20",
+                "value": 20
+              }
+            ]
+          }
+        }
+      }
+    },
+    "GetOrganizationResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "ID of the organization",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "description": "URL of the organization",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "created_at": {
+          "title": "Created at",
+          "description": "Datetime when organization was created",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "description": "Datetime when organization was last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "description": "Slug of the organization",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the organization",
+          "type": "string",
+          "maxLength": 2048
+        },
+        "owner": {
+          "title": "Owner",
+          "description": "User who owns this organization",
+          "type": "object"
+        },
+        "plan": {
+          "title": "Plan",
+          "description": "Plan of the organization",
+          "type": "object"
+        }
+      },
+      "example": {
+        "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "created_at": "2020-03-27T23:09:35+0000",
+        "updated_at": "2020-03-27T23:09:35+0000",
+        "name": "My Test Organization",
+        "slug": "my-test-organization",
+        "description": "Organization where I test things",
+        "owner": {
+          "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+          "name": "John Smith",
+          "email": "john.smith@example.org"
+        },
+        "plan": {
+          "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+          "expires_at": "2020-04-27T23:09:35+0000",
+          "active": true,
+          "plan_type": {
+            "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+            "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+            "name": "Trial",
+            "slug": "trial",
+            "description": "Trial plan that enables limited use of the service",
+            "meta_data": {
+              "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+            },
+            "quotas": [
+              {
+                "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+                "name": "Touchpoints (20)",
+                "slug": "touchpoints-20",
+                "description": "Limit the number of touchpoints to 20",
+                "value": 20
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "min_created_at": {
+        "name": "min_created_at",
+        "in": "query",
+        "description": "Include results with 'created_at' value greater than or equal to this value.",
+        "required": false,
+        "type": "string"
+      },
+      "max_created_at": {
+        "name": "max_created_at",
+        "in": "query",
+        "description": "Include results with 'created_at' value less than or equal to this value.",
+        "required": false,
+        "type": "string"
+      },
+      "min_updated_at": {
+        "name": "min_updated_at",
+        "in": "query",
+        "description": "Include results with 'updated_at' value greater than or equal to this value.",
+        "required": false,
+        "type": "string"
+      },
+      "max_updated_at": {
+        "name": "max_updated_at",
+        "in": "query",
+        "description": "Include results with 'updated_at' value less than or equal to this value.",
+        "required": false,
+        "type": "string"
+      },
+      "slug": {
+        "name": "slug",
+        "in": "query",
+        "description": "Include results with 'slug' value that contain this value (case insensitive).",
+        "required": false,
+        "type": "string"
+      },
+      "slug_regex": {
+        "name": "slug_regex",
+        "in": "query",
+        "description": "Include results with 'slug' value that match this regex value.",
+        "required": false,
+        "type": "string"
+      },
+      "name": {
+        "name": "name",
+        "in": "query",
+        "description": "Include results with 'name' value that contain this value (case insensitive).",
+        "required": false,
+        "type": "string"
+      },
+      "name_regex": {
+        "name": "name_regex",
+        "in": "query",
+        "description": "Include results with 'name' value that match this regex value.",
+        "required": false,
+        "type": "string"
+      },
+      "email": {
+        "name": "email",
+        "in": "query",
+        "description": "Include results with 'email' value that contain this value (case insensitive).",
+        "required": false,
+        "type": "string"
+      },
+      "email_regex": {
+        "name": "email_regex",
+        "in": "query",
+        "description": "Include results with 'email' value that match this regex value.",
+        "required": false,
+        "type": "string"
+      },
+      "order_by": {
+        "name": "order_by",
+        "in": "query",
+        "description": "Field to use when ordering the results.",
+        "required": false,
+        "type": "string"
+      },
+      "search": {
+        "name": "search",
+        "in": "query",
+        "description": "Term to search for.",
+        "required": false,
+        "type": "string"
+      },
+      "cursor": {
+        "name": "cursor",
+        "in": "query",
+        "description": "Pagination cursor value to retrieve the next page.",
+        "required": false,
+        "type": "string"
+      }
+    }
+  }
+}

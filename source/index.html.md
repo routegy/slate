@@ -1,9 +1,13 @@
 ---
 title: Routegy API v1
 language_tabs:
+  - http: HTTP
   - python: Python
+  - ruby: Ruby
 language_clients:
+  - http: ""
   - python: ""
+  - ruby: ""
 toc_footers: []
 includes: []
 search: true
@@ -48,6 +52,13 @@ Operations for the Public API.
 
 > Code samples
 
+```http
+GET https://api.routegy.com/public/codes/{short_id}/touchpoint HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
 ```python
 import requests
 headers = {
@@ -57,6 +68,22 @@ headers = {
 r = requests.get('https://api.routegy.com/public/codes/{short_id}/touchpoint', headers = headers)
 
 print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://api.routegy.com/public/codes/{short_id}/touchpoint',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
 
 ```
 
@@ -142,6 +169,13 @@ This operation does not require authentication
 
 > Code samples
 
+```http
+POST https://api.routegy.com/public/codes/{short_id}/touch HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
 ```python
 import requests
 headers = {
@@ -151,6 +185,22 @@ headers = {
 r = requests.post('https://api.routegy.com/public/codes/{short_id}/touch', headers = headers)
 
 print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://api.routegy.com/public/codes/{short_id}/touch',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
 
 ```
 
@@ -166,13 +216,11 @@ Create a new touch for a touchpoint referenced from a code short id.
 
 > Example responses
 
-> 400 Response
+> 201 Response
 
 ```json
 {
-  "detail": "Bad Request.",
-  "status_code": 400,
-  "error_id": null
+  "id": "5A29D4AB-99AE-49A7-810B-CDA71FBBF9ED"
 }
 ```
 
@@ -180,13 +228,11 @@ Create a new touch for a touchpoint referenced from a code short id.
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|None|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|[CodeTouchCreatedResponse](#schemacodetouchcreatedresponse)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
-
-<h3 id="create-touch-for-a-touchpoint-from-a-code-short-id-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
@@ -204,6 +250,13 @@ Operations for the Management API.
 
 > Code samples
 
+```http
+GET https://api.routegy.com/codes/{id} HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
 ```python
 import requests
 headers = {
@@ -217,13 +270,28 @@ print(r.json())
 
 ```
 
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'X-ROUTEGY-API-KEY' => 'API_KEY'
+}
+
+result = RestClient.get 'https://api.routegy.com/codes/{id}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
 `GET /codes/{id}`
 
 Get code by its ID. 
 
-**Related:**
-- [Topic: Code](https://docs.routegy.com/topic/codes/)
-- [Reference: Code](https://docs.routegy.com/reference/codes/)
+ Check out the [Topic: Code](https://docs.routegy.com/topic/codes/) and [Reference: Code](https://docs.routegy.com/reference/codes/) docs for more information.
 
 <h3 id="get-code-by-id-parameters">Parameters</h3>
 
@@ -267,6 +335,13 @@ ApiKeyAuth
 
 > Code samples
 
+```http
+GET https://api.routegy.com/codes/{short_id} HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
 ```python
 import requests
 headers = {
@@ -277,6 +352,23 @@ headers = {
 r = requests.get('https://api.routegy.com/codes/{short_id}', headers = headers)
 
 print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'X-ROUTEGY-API-KEY' => 'API_KEY'
+}
+
+result = RestClient.get 'https://api.routegy.com/codes/{short_id}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
 
 ```
 
@@ -330,6 +422,13 @@ ApiKeyAuth
 
 > Code samples
 
+```http
+GET https://api.routegy.com/organizations HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
 ```python
 import requests
 headers = {
@@ -340,6 +439,23 @@ headers = {
 r = requests.get('https://api.routegy.com/organizations', headers = headers)
 
 print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'X-ROUTEGY-API-KEY' => 'API_KEY'
+}
+
+result = RestClient.get 'https://api.routegy.com/organizations',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
 
 ```
 
@@ -357,7 +473,7 @@ List all organizations for the authenticated user.
 
 ```json
 {
-  "next": "https://api.routegy.com/organization?next=XXXXXX",
+  "next": "https://api.routegy.com/organizations?next=XXXXXX",
   "previous": null,
   "items": [
     {
@@ -392,6 +508,14 @@ ApiKeyAuth
 
 > Code samples
 
+```http
+POST https://api.routegy.com/organizations HTTP/1.1
+Host: api.routegy.com
+Content-Type: application/json
+Accept: application/json
+
+```
+
 ```python
 import requests
 headers = {
@@ -403,6 +527,24 @@ headers = {
 r = requests.post('https://api.routegy.com/organizations', headers = headers)
 
 print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'X-ROUTEGY-API-KEY' => 'API_KEY'
+}
+
+result = RestClient.post 'https://api.routegy.com/organizations',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
 
 ```
 
@@ -422,7 +564,7 @@ Create a new organization.
   "name": "My Test Organization",
   "description": "Organization where I test things",
   "owner": "A56C801E-D814-41E0-8A4F-70FBF25B7C13",
-  "plan": "DCFF25C3-FC52-482A-8C60-9AFE1DB9DDF1"
+  "plan": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D"
 }
 ```
 
@@ -482,6 +624,9 @@ Create a new organization.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|[CreateOrganizationResponse](#schemacreateorganizationresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -624,6 +769,26 @@ Response body when requested resource is not found
 |short_id|string|false|read-only|Short ID to use when referencing the code in the public API|
 |touch_point|string(uuid)|false|none|ID of the touchpoint for the code|
 
+<h2 id="tocS_CodeTouchCreatedResponse">CodeTouchCreatedResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemacodetouchcreatedresponse"></a>
+<a id="schema_CodeTouchCreatedResponse"></a>
+<a id="tocScodetouchcreatedresponse"></a>
+<a id="tocscodetouchcreatedresponse"></a>
+
+```json
+{
+  "id": "5A29D4AB-99AE-49A7-810B-CDA71FBBF9ED"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(uuid)|false|read-only|ID of the touch that was created|
+
 <h2 id="tocS_GetCodeTouchPointResponse">GetCodeTouchPointResponse</h2>
 <!-- backwards compatibility -->
 <a id="schemagetcodetouchpointresponse"></a>
@@ -710,7 +875,7 @@ Response body when requested resource is not found
 
 ```json
 {
-  "next": "https://api.routegy.com/organization?next=XXXXXX",
+  "next": "https://api.routegy.com/organizations?next=XXXXXX",
   "previous": null,
   "items": [
     {
@@ -775,7 +940,7 @@ Response containing a list of organizations
   "name": "My Test Organization",
   "description": "Organization where I test things",
   "owner": "A56C801E-D814-41E0-8A4F-70FBF25B7C13",
-  "plan": "DCFF25C3-FC52-482A-8C60-9AFE1DB9DDF1"
+  "plan": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D"
 }
 
 ```
