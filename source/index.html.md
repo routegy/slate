@@ -1,239 +1,917 @@
 ---
-title: API Reference
-
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
-
+title: Routegy API v1
+language_tabs:
+  - python: Python
+language_clients:
+  - python: ""
+toc_footers: []
+includes: []
 search: true
+highlight_theme: darkula
+headingLevel: 2
+
 ---
 
-# Introduction
+<!-- Generator: Widdershins v4.0.1 -->
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+<h1 id="routegy-api">Routegy API v1</h1>
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Welcome to the Routegy API docs!
+
+These documents include both the Management API and the Public API.
+
+For more information, be sure to check out our documentation website at <https://docs.routegy.com>.
+
+Base URLs:
+
+* <a href="https://api.routegy.com/">https://api.routegy.com/</a>
+
+<a href="https://www.routegy.com/terms-of-service/">Terms of service</a>
+Email: <a href="mailto:support@routegy.com">Support</a> 
 
 # Authentication
 
-> To authorize, use this code:
+* API Key (ApiKeyAuth)
+    - Parameter Name: **X-ROUTEGY-API-KEY**, in: header. 
 
-```ruby
-require 'kittn'
+<h1 id="routegy-api-public-api">Public API</h1>
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Operations for the Public API.
 
-```python
-import kittn
+<a href="https://docs.routegy.com/topic/public-api/">External documentation</a>
 
-api = kittn.authorize('meowmeowmeow')
-```
+## Get touchpoint from a code short id
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+<a id="opIdpublic_codes_touchpoint"></a>
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+> Code samples
 
 ```python
-import kittn
+import requests
+headers = {
+  'Accept': 'application/json'
+}
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+r = requests.get('https://api.routegy.com/public/codes/{short_id}/touchpoint', headers = headers)
+
+print(r.json())
+
 ```
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+`GET /public/codes/{short_id}/touchpoint`
 
-```javascript
-const kittn = require('kittn');
+Get touchpoint from code short id.
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+<h3 id="get-touchpoint-from-a-code-short-id-parameters">Parameters</h3>
 
-> The above command returns JSON structured like this:
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|short_id|path|integer|true|A short ID identifying this code.|
+
+> Example responses
+
+> 200 Response
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+{
+  "name": "Out of coffee?",
+  "slug": "out-of-coffee",
+  "description": "Let us know so we can refill the pot",
+  "location": {
+    "name": "Break room",
+    "slug": "break-room",
+    "description": "Employee break room"
   },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+  "schema": {
+    "name": "Coffee Machine",
+    "slug": "coffee-machine",
+    "description": "Report supply chain issues related to coffee machines",
+    "document": {
+      "type": "object",
+      "title": "Out of coffee?",
+      "required": [
+        "problem"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "problem": [
+          "No coffee beans",
+          "No filters",
+          "No cups",
+          "Machine isn't working",
+          "Something else"
+        ],
+        "type": "string",
+        "attrs": {
+          "type": "radio"
+        },
+        "title": "What is the problem?",
+        "comments": {
+          "type": "string",
+          "attrs": {
+            "type": "textarea",
+            "placeholder": "Please provide any additional comments here"
+          },
+          "title": "Additional comments"
+        }
+      }
+    }
   }
-]
+}
 ```
 
-This endpoint retrieves all kittens.
+<h3 id="get-touchpoint-from-a-code-short-id-responses">Responses</h3>
 
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[GetCodeTouchPointResponse](#schemagetcodetouchpointresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+This operation does not require authentication
 </aside>
 
-## Get a Specific Kitten
+## Create touch for a touchpoint from a code short id
 
-```ruby
-require 'kittn'
+<a id="opIdpublic_codes_touch"></a>
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+> Code samples
 
 ```python
-import kittn
+import requests
+headers = {
+  'Accept': 'application/json'
+}
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+r = requests.post('https://api.routegy.com/public/codes/{short_id}/touch', headers = headers)
+
+print(r.json())
+
 ```
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+`POST /public/codes/{short_id}/touch`
 
-```javascript
-const kittn = require('kittn');
+Create a new touch for a touchpoint referenced from a code short id.
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
+<h3 id="create-touch-for-a-touchpoint-from-a-code-short-id-parameters">Parameters</h3>
 
-> The above command returns JSON structured like this:
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|short_id|path|integer|true|A short ID identifying this code.|
+
+> Example responses
+
+> 400 Response
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "detail": "Bad Request.",
+  "status_code": 400,
+  "error_id": null
 }
 ```
 
-This endpoint retrieves a specific kitten.
+<h3 id="create-touch-for-a-touchpoint-from-a-code-short-id-responses">Responses</h3>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
 
-### HTTP Request
+<h3 id="create-touch-for-a-touchpoint-from-a-code-short-id-responseschema">Response Schema</h3>
 
-`GET http://example.com/kittens/<ID>`
+<aside class="success">
+This operation does not require authentication
+</aside>
 
-### URL Parameters
+<h1 id="routegy-api-management-api">Management API</h1>
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Operations for the Management API.
 
-## Delete a Specific Kitten
+<a href="https://docs.routegy.com/topic/management-api/">External documentation</a>
 
-```ruby
-require 'kittn'
+## Get code by id
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+<a id="opIdget_code_by_id"></a>
+
+> Code samples
 
 ```python
-import kittn
+import requests
+headers = {
+  'Accept': 'application/json',
+  'X-ROUTEGY-API-KEY': 'API_KEY'
+}
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+r = requests.get('https://api.routegy.com/codes/{id}', headers = headers)
+
+print(r.json())
+
 ```
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
+`GET /codes/{id}`
 
-```javascript
-const kittn = require('kittn');
+Get code by its ID. 
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+**Related:**
+- [Topic: Code](https://docs.routegy.com/topic/codes/)
+- [Reference: Code](https://docs.routegy.com/reference/codes/)
 
-> The above command returns JSON structured like this:
+<h3 id="get-code-by-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string(uuid)|true|A UUID string identifying this code.|
+
+> Example responses
+
+> 200 Response
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "id": "5C74E22E-D7ED-497E-8DE3-09FF4E9AEBEC",
+  "url": "https://api.routegy.com/codes/5C74E22E-D7ED-497E-8DE3-09FF4E9AEBEC",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "short_id": "ax7dkEg",
+  "touch_point": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
 }
 ```
 
-This endpoint deletes a specific kitten.
+<h3 id="get-code-by-id-responses">Responses</h3>
 
-### HTTP Request
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[GetCodeResponse](#schemagetcoderesponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
 
-`DELETE http://example.com/kittens/<ID>`
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+ApiKeyAuth
+</aside>
 
-### URL Parameters
+## Get code by short id
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+<a id="opIdget_code_by_short_id"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'X-ROUTEGY-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://api.routegy.com/codes/{short_id}', headers = headers)
+
+print(r.json())
+
+```
+
+`GET /codes/{short_id}`
+
+Get code by its short ID. 
+
+**Related:**
+* [Topic: Code](https://docs.routegy.com/topic/codes/)
+* [Reference: Code](https://docs.routegy.com/reference/codes/)
+
+<h3 id="get-code-by-short-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|short_id|path|integer|true|A short ID identifying this code.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "5C74E22E-D7ED-497E-8DE3-09FF4E9AEBEC",
+  "url": "https://api.routegy.com/codes/5C74E22E-D7ED-497E-8DE3-09FF4E9AEBEC",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "short_id": "ax7dkEg",
+  "touch_point": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
+}
+```
+
+<h3 id="get-code-by-short-id-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[GetCodeResponse](#schemagetcoderesponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+ApiKeyAuth
+</aside>
+
+## List organizations
+
+<a id="opIdlist_organizations"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'X-ROUTEGY-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://api.routegy.com/organizations', headers = headers)
+
+print(r.json())
+
+```
+
+`GET /organizations`
+
+List all organizations for the authenticated user.
+
+**Related:**
+* [Topic: Organization](https://docs.routegy.com/topic/organizations/)
+* [Reference: Organization](https://docs.routegy.com/reference/organizations/)
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "next": "https://api.routegy.com/organization?next=XXXXXX",
+  "previous": null,
+  "items": [
+    {
+      "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+      "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+      "name": "My Test Organization",
+      "slug": "my-test-organization",
+      "description": "Organization where I test things"
+    }
+  ]
+}
+```
+
+<h3 id="list-organizations-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[ListOrganizationsResponse](#schemalistorganizationsresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+ApiKeyAuth
+</aside>
+
+## Create new organization
+
+<a id="opIdcreate_organization"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'X-ROUTEGY-API-KEY': 'API_KEY'
+}
+
+r = requests.post('https://api.routegy.com/organizations', headers = headers)
+
+print(r.json())
+
+```
+
+`POST /organizations`
+
+Create a new organization.
+
+**Related:**
+* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)
+* [Topic: Organization](https://docs.routegy.com/topic/organizations/)
+* [Reference: Organization](https://docs.routegy.com/reference/organizations/)
+
+> Body parameter
+
+```json
+{
+  "name": "My Test Organization",
+  "description": "Organization where I test things",
+  "owner": "A56C801E-D814-41E0-8A4F-70FBF25B7C13",
+  "plan": "DCFF25C3-FC52-482A-8C60-9AFE1DB9DDF1"
+}
+```
+
+<h3 id="create-new-organization-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CreateOrganizationRequest](#schemacreateorganizationrequest)|true|Object defining the resource to create|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "name": "My Test Organization",
+  "slug": "my-test-organization",
+  "description": "Organization where I test things",
+  "owner": {
+    "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+    "name": "John Smith",
+    "email": "john.smith@example.org"
+  },
+  "plan": {
+    "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+    "expires_at": "2020-04-27T23:09:35+0000",
+    "active": true,
+    "plan_type": {
+      "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "name": "Trial",
+      "slug": "trial",
+      "description": "Trial plan that enables limited use of the service",
+      "meta_data": {
+        "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+      },
+      "quotas": [
+        {
+          "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+          "name": "Touchpoints (20)",
+          "slug": "touchpoints-20",
+          "description": "Limit the number of touchpoints to 20",
+          "value": 20
+        }
+      ]
+    }
+  }
+}
+```
+
+<h3 id="create-new-organization-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|[CreateOrganizationResponse](#schemacreateorganizationresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+ApiKeyAuth
+</aside>
+
+# Schemas
+
+<h2 id="tocS_BadRequestResponse">BadRequestResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemabadrequestresponse"></a>
+<a id="schema_BadRequestResponse"></a>
+<a id="tocSbadrequestresponse"></a>
+<a id="tocsbadrequestresponse"></a>
+
+```json
+{
+  "detail": "Bad Request.",
+  "status_code": 400,
+  "error_id": null
+}
+
+```
+
+Response body when bad request is received
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|detail|string|false|read-only|Details about the error|
+|status_code|integer|false|read-only|HTTP status code of the error|
+|error_id|integer¦null|false|read-only|ID of the error for external tracking|
+
+<h2 id="tocS_UnauthorizedResponse">UnauthorizedResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaunauthorizedresponse"></a>
+<a id="schema_UnauthorizedResponse"></a>
+<a id="tocSunauthorizedresponse"></a>
+<a id="tocsunauthorizedresponse"></a>
+
+```json
+{
+  "detail": "Unauthenticated.",
+  "status_code": 401,
+  "error_id": null
+}
+
+```
+
+Response body when request lacks valid authentication credentials
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|detail|string|false|read-only|Details about the error|
+|status_code|integer|false|read-only|HTTP status code of the error|
+|error_id|integer¦null|false|read-only|ID of the error for external tracking|
+
+<h2 id="tocS_ForbiddenResponse">ForbiddenResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaforbiddenresponse"></a>
+<a id="schema_ForbiddenResponse"></a>
+<a id="tocSforbiddenresponse"></a>
+<a id="tocsforbiddenresponse"></a>
+
+```json
+{
+  "detail": "Forbidden.",
+  "status_code": 403,
+  "error_id": null
+}
+
+```
+
+Response body when authenticated request does not have authorization to perform action
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|detail|string|false|read-only|Details about the error|
+|status_code|integer|false|read-only|HTTP status code of the error|
+|error_id|integer¦null|false|read-only|ID of the error for external tracking|
+
+<h2 id="tocS_NotFoundResponse">NotFoundResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemanotfoundresponse"></a>
+<a id="schema_NotFoundResponse"></a>
+<a id="tocSnotfoundresponse"></a>
+<a id="tocsnotfoundresponse"></a>
+
+```json
+{
+  "detail": "Not Found.",
+  "status_code": 404,
+  "error_id": null
+}
+
+```
+
+Response body when requested resource is not found
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|detail|string|false|read-only|Details about the error|
+|status_code|integer|false|read-only|HTTP status code of the error|
+|error_id|integer¦null|false|read-only|ID of the error for external tracking|
+
+<h2 id="tocS_GetCodeResponse">GetCodeResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemagetcoderesponse"></a>
+<a id="schema_GetCodeResponse"></a>
+<a id="tocSgetcoderesponse"></a>
+<a id="tocsgetcoderesponse"></a>
+
+```json
+{
+  "id": "5C74E22E-D7ED-497E-8DE3-09FF4E9AEBEC",
+  "url": "https://api.routegy.com/codes/5C74E22E-D7ED-497E-8DE3-09FF4E9AEBEC",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "short_id": "ax7dkEg",
+  "touch_point": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(uuid)|false|read-only|ID of the code|
+|url|string(uri)|false|read-only|URL of the code|
+|created_at|string(date-time)|false|read-only|Datetime when the code was created|
+|updated_at|string(date-time)|false|read-only|Datetime when the code was last updated|
+|short_id|string|false|read-only|Short ID to use when referencing the code in the public API|
+|touch_point|string(uuid)|false|none|ID of the touchpoint for the code|
+
+<h2 id="tocS_GetCodeTouchPointResponse">GetCodeTouchPointResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemagetcodetouchpointresponse"></a>
+<a id="schema_GetCodeTouchPointResponse"></a>
+<a id="tocSgetcodetouchpointresponse"></a>
+<a id="tocsgetcodetouchpointresponse"></a>
+
+```json
+{
+  "name": "Out of coffee?",
+  "slug": "out-of-coffee",
+  "description": "Let us know so we can refill the pot",
+  "location": {
+    "name": "Break room",
+    "slug": "break-room",
+    "description": "Employee break room"
+  },
+  "schema": {
+    "name": "Coffee Machine",
+    "slug": "coffee-machine",
+    "description": "Report supply chain issues related to coffee machines",
+    "document": {
+      "type": "object",
+      "title": "Out of coffee?",
+      "required": [
+        "problem"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "problem": [
+          "No coffee beans",
+          "No filters",
+          "No cups",
+          "Machine isn't working",
+          "Something else"
+        ],
+        "type": "string",
+        "attrs": {
+          "type": "radio"
+        },
+        "title": "What is the problem?",
+        "comments": {
+          "type": "string",
+          "attrs": {
+            "type": "textarea",
+            "placeholder": "Please provide any additional comments here"
+          },
+          "title": "Additional comments"
+        }
+      }
+    }
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|false|none|Name of the touchpoint|
+|description|string|false|none|Description of the touchpoint|
+|slug|string(slug)|false|read-only|Slug of the touchpoint|
+|location|object|false|none|Location of the touchpoint|
+|» name|string|false|none|Name of the location|
+|» description|string|false|none|Description of the location|
+|» slug|string(slug)|false|read-only|Slug of the location|
+|schema|object|false|none|Schema of the touchpoint|
+|» name|string|false|none|Name of the schema|
+|» description|string|false|none|Description of the schema|
+|» slug|string(slug)|false|read-only|Slug of the schema|
+|» document|object|false|none|JSON Schema document of the schema|
+|»» type|string|false|none|Type of JSON Schema object|
+|»» title|string|false|none|Title of JSON Schema object|
+|»» required|[any]|false|none|Required properties of JSON Schema object|
+|»» properties|object|false|none|Properties of JSON Schema object|
+
+<h2 id="tocS_ListOrganizationsResponse">ListOrganizationsResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemalistorganizationsresponse"></a>
+<a id="schema_ListOrganizationsResponse"></a>
+<a id="tocSlistorganizationsresponse"></a>
+<a id="tocslistorganizationsresponse"></a>
+
+```json
+{
+  "next": "https://api.routegy.com/organization?next=XXXXXX",
+  "previous": null,
+  "items": [
+    {
+      "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+      "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+      "name": "My Test Organization",
+      "slug": "my-test-organization",
+      "description": "Organization where I test things"
+    }
+  ]
+}
+
+```
+
+Response containing a list of organizations
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|next|string(uri)¦null|false|none|URL to next page of results|
+|previous|string(uri)¦null|false|none|URL to previous page of results|
+|results|[[ListOrganizationResponse](#schemalistorganizationresponse)]|false|none|Array containing page of results|
+
+<h2 id="tocS_ListOrganizationResponse">ListOrganizationResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemalistorganizationresponse"></a>
+<a id="schema_ListOrganizationResponse"></a>
+<a id="tocSlistorganizationresponse"></a>
+<a id="tocslistorganizationresponse"></a>
+
+```json
+{
+  "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "name": "My Test Organization",
+  "slug": "my-test-organization",
+  "description": "Organization where I test things"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(uuid)|false|read-only|ID of the organization|
+|url|string(uri)|false|read-only|URL of the organization|
+|name|string|false|read-only|Name of the organization|
+|slug|string(slug)|false|read-only|Slug of the organization|
+|description|string|false|read-only|Description of the organization|
+
+<h2 id="tocS_CreateOrganizationRequest">CreateOrganizationRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemacreateorganizationrequest"></a>
+<a id="schema_CreateOrganizationRequest"></a>
+<a id="tocScreateorganizationrequest"></a>
+<a id="tocscreateorganizationrequest"></a>
+
+```json
+{
+  "name": "My Test Organization",
+  "description": "Organization where I test things",
+  "owner": "A56C801E-D814-41E0-8A4F-70FBF25B7C13",
+  "plan": "DCFF25C3-FC52-482A-8C60-9AFE1DB9DDF1"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Name of the organization|
+|description|string|false|none|Description of the organization|
+|owner|string(uuid)|true|none|User that is the owner of this organization|
+|plan|string(uuid)|true|none|Plan to use for this organization|
+
+<h2 id="tocS_CreateOrganizationResponse">CreateOrganizationResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemacreateorganizationresponse"></a>
+<a id="schema_CreateOrganizationResponse"></a>
+<a id="tocScreateorganizationresponse"></a>
+<a id="tocscreateorganizationresponse"></a>
+
+```json
+{
+  "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "name": "My Test Organization",
+  "slug": "my-test-organization",
+  "description": "Organization where I test things",
+  "owner": {
+    "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+    "name": "John Smith",
+    "email": "john.smith@example.org"
+  },
+  "plan": {
+    "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+    "expires_at": "2020-04-27T23:09:35+0000",
+    "active": true,
+    "plan_type": {
+      "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "name": "Trial",
+      "slug": "trial",
+      "description": "Trial plan that enables limited use of the service",
+      "meta_data": {
+        "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+      },
+      "quotas": [
+        {
+          "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+          "name": "Touchpoints (20)",
+          "slug": "touchpoints-20",
+          "description": "Limit the number of touchpoints to 20",
+          "value": 20
+        }
+      ]
+    }
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(uuid)|false|read-only|ID of the organization|
+|url|string(uri)|false|read-only|URL of the organization|
+|created_at|string(date-time)|false|read-only|Datetime when organization was created|
+|updated_at|string(date-time)|false|read-only|Datetime when organization was last updated|
+|name|string|false|none|Name of the organization|
+|slug|string(slug)|false|read-only|Slug of the organization|
+|description|string|false|none|Description of the organization|
+|owner|object|false|none|User who owns this organization|
+|plan|object|false|none|Plan of the organization|
+
+<h2 id="tocS_GetOrganizationResponse">GetOrganizationResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemagetorganizationresponse"></a>
+<a id="schema_GetOrganizationResponse"></a>
+<a id="tocSgetorganizationresponse"></a>
+<a id="tocsgetorganizationresponse"></a>
+
+```json
+{
+  "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "name": "My Test Organization",
+  "slug": "my-test-organization",
+  "description": "Organization where I test things",
+  "owner": {
+    "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+    "name": "John Smith",
+    "email": "john.smith@example.org"
+  },
+  "plan": {
+    "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+    "expires_at": "2020-04-27T23:09:35+0000",
+    "active": true,
+    "plan_type": {
+      "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "name": "Trial",
+      "slug": "trial",
+      "description": "Trial plan that enables limited use of the service",
+      "meta_data": {
+        "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+      },
+      "quotas": [
+        {
+          "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+          "name": "Touchpoints (20)",
+          "slug": "touchpoints-20",
+          "description": "Limit the number of touchpoints to 20",
+          "value": 20
+        }
+      ]
+    }
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(uuid)|false|read-only|ID of the organization|
+|url|string(uri)|false|read-only|URL of the organization|
+|created_at|string(date-time)|false|read-only|Datetime when organization was created|
+|updated_at|string(date-time)|false|read-only|Datetime when organization was last updated|
+|name|string|false|none|Name of the organization|
+|slug|string(slug)|false|read-only|Slug of the organization|
+|description|string|false|none|Description of the organization|
+|owner|object|false|none|User who owns this organization|
+|plan|object|false|none|Plan of the organization|
 
