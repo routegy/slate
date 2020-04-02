@@ -334,6 +334,170 @@
       "parameters": [
 
       ]
+    },
+    "/organizations/{id}": {
+      "get": {
+        "operationId": "get_organization",
+        "summary": "Get organization by id",
+        "description": "Get organization by its ID.\n\n**Related:**\n* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)\n* [Topic: Organization](https://docs.routegy.com/topic/organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations/)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A UUID string identifying this organization.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/GetOrganizationResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Organizations"
+        ]
+      },
+      "put": {
+        "operationId": "update_organization",
+        "summary": "Update organization by id",
+        "description": "Update organization by its id",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/UpdateOrganizationRequest" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/UpdateOrganizationResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Organizations"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_organization",
+        "summary": "Patch organization by id",
+        "description": "Patch organization by its id",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/PatchUpdateOrganizationRequest" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/PatchUpdateOrganizationResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Organizations"
+        ]
+      },
+      "delete": {
+        "operationId": "delete_organization",
+        "summary": "Delete organization by id",
+        "description": "Delete organization by its id",
+        "parameters": [
+
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Organizations"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A UUID string identifying this organization.",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }
+      ]
     }
   },
   "definitions": {
@@ -922,6 +1086,284 @@
       }
     },
     "GetOrganizationResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "ID of the organization",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "description": "URL of the organization",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "created_at": {
+          "title": "Created at",
+          "description": "Datetime when organization was created",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "description": "Datetime when organization was last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "description": "Slug of the organization",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the organization",
+          "type": "string",
+          "maxLength": 2048
+        },
+        "owner": {
+          "title": "Owner",
+          "description": "User who owns this organization",
+          "type": "object"
+        },
+        "plan": {
+          "title": "Plan",
+          "description": "Plan of the organization",
+          "type": "object"
+        }
+      },
+      "example": {
+        "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "created_at": "2020-03-27T23:09:35+0000",
+        "updated_at": "2020-03-27T23:09:35+0000",
+        "name": "My Test Organization",
+        "slug": "my-test-organization",
+        "description": "Organization where I test things",
+        "owner": {
+          "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+          "name": "John Smith",
+          "email": "john.smith@example.org"
+        },
+        "plan": {
+          "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+          "expires_at": "2020-04-27T23:09:35+0000",
+          "active": true,
+          "plan_type": {
+            "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+            "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+            "name": "Trial",
+            "slug": "trial",
+            "description": "Trial plan that enables limited use of the service",
+            "meta_data": {
+              "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+            },
+            "quotas": [
+              {
+                "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+                "name": "Touchpoints (20)",
+                "slug": "touchpoints-20",
+                "description": "Limit the number of touchpoints to 20",
+                "value": 20
+              }
+            ]
+          }
+        }
+      }
+    },
+    "UpdateOrganizationRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the organization",
+          "type": "string",
+          "maxLength": 2048
+        },
+        "owner": {
+          "title": "Owner",
+          "description": "User who owns this organization",
+          "type": "string",
+          "format": "uuid"
+        },
+        "plan": {
+          "title": "Plan",
+          "description": "Plan of the organization",
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "example": {
+        "name": "My Test Organization",
+        "description": "Organization where I test things",
+        "owner": "27B4CF49-88CD-4960-B397-13443DD24402",
+        "plan": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D"
+      }
+    },
+    "UpdateOrganizationResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "ID of the organization",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "description": "URL of the organization",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "created_at": {
+          "title": "Created at",
+          "description": "Datetime when organization was created",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "description": "Datetime when organization was last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "description": "Slug of the organization",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the organization",
+          "type": "string",
+          "maxLength": 2048
+        },
+        "owner": {
+          "title": "Owner",
+          "description": "User who owns this organization",
+          "type": "object"
+        },
+        "plan": {
+          "title": "Plan",
+          "description": "Plan of the organization",
+          "type": "object"
+        }
+      },
+      "example": {
+        "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "created_at": "2020-03-27T23:09:35+0000",
+        "updated_at": "2020-03-27T23:09:35+0000",
+        "name": "My Test Organization",
+        "slug": "my-test-organization",
+        "description": "Organization where I test things",
+        "owner": {
+          "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+          "name": "John Smith",
+          "email": "john.smith@example.org"
+        },
+        "plan": {
+          "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+          "expires_at": "2020-04-27T23:09:35+0000",
+          "active": true,
+          "plan_type": {
+            "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+            "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+            "name": "Trial",
+            "slug": "trial",
+            "description": "Trial plan that enables limited use of the service",
+            "meta_data": {
+              "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+            },
+            "quotas": [
+              {
+                "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+                "name": "Touchpoints (20)",
+                "slug": "touchpoints-20",
+                "description": "Limit the number of touchpoints to 20",
+                "value": 20
+              }
+            ]
+          }
+        }
+      }
+    },
+    "PatchUpdateOrganizationRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "Name of the organization",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the organization",
+          "type": "string",
+          "maxLength": 2048
+        },
+        "owner": {
+          "title": "Owner",
+          "description": "User who owns this organization",
+          "type": "string",
+          "format": "uuid"
+        },
+        "plan": {
+          "title": "Plan",
+          "description": "Plan of the organization",
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "example": {
+        "name": "My Test Organization",
+        "description": "Organization where I test things",
+        "owner": "27B4CF49-88CD-4960-B397-13443DD24402",
+        "plan": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D"
+      }
+    },
+    "PatchUpdateOrganizationResponse": {
       "type": "object",
       "properties": {
         "id": {

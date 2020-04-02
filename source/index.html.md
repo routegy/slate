@@ -2,12 +2,13 @@
 title: Routegy API v1
 language_tabs:
   - http: HTTP
+  - shell: Shell
   - python: Python
   - ruby: Ruby
+  - go: Go
 language_clients:
-  - http: ""
-  - python: ""
-  - ruby: ""
+  - shell: curl
+  - python: requests
 toc_footers: []
 includes: []
 search: true
@@ -59,6 +60,13 @@ Accept: application/json
 
 ```
 
+```shell
+# You can also use wget
+curl -X GET https://api.routegy.com/public/codes/{short_id}/touchpoint \
+  -H 'Accept: application/json'
+
+```
+
 ```python
 import requests
 headers = {
@@ -84,6 +92,31 @@ result = RestClient.get 'https://api.routegy.com/public/codes/{short_id}/touchpo
   }, headers: headers
 
 p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.routegy.com/public/codes/{short_id}/touchpoint", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -176,6 +209,13 @@ Accept: application/json
 
 ```
 
+```shell
+# You can also use wget
+curl -X POST https://api.routegy.com/public/codes/{short_id}/touch \
+  -H 'Accept: application/json'
+
+```
+
 ```python
 import requests
 headers = {
@@ -201,6 +241,31 @@ result = RestClient.post 'https://api.routegy.com/public/codes/{short_id}/touch'
   }, headers: headers
 
 p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://api.routegy.com/public/codes/{short_id}/touch", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -257,6 +322,14 @@ Accept: application/json
 
 ```
 
+```shell
+# You can also use wget
+curl -X GET https://api.routegy.com/codes/{id} \
+  -H 'Accept: application/json' \
+  -H 'X-ROUTEGY-API-KEY: API_KEY'
+
+```
+
 ```python
 import requests
 headers = {
@@ -287,11 +360,37 @@ p JSON.parse(result)
 
 ```
 
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.routegy.com/codes/{id}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
 `GET /codes/{id}`
 
 Get code by its ID. 
 
- Check out the [Topic: Code](https://docs.routegy.com/topic/codes/) and [Reference: Code](https://docs.routegy.com/reference/codes/) docs for more information.
+ Check out the [Topic: Code](https://docs.routegy.com/topic/codes/) and [Reference: Code](https://docs.routegy.com/reference/codes/) pages for more information.
 
 <h3 id="get-code-by-id-parameters">Parameters</h3>
 
@@ -342,6 +441,14 @@ Accept: application/json
 
 ```
 
+```shell
+# You can also use wget
+curl -X GET https://api.routegy.com/codes/{short_id} \
+  -H 'Accept: application/json' \
+  -H 'X-ROUTEGY-API-KEY: API_KEY'
+
+```
+
 ```python
 import requests
 headers = {
@@ -372,13 +479,37 @@ p JSON.parse(result)
 
 ```
 
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.routegy.com/codes/{short_id}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
 `GET /codes/{short_id}`
 
 Get code by its short ID. 
 
-**Related:**
-* [Topic: Code](https://docs.routegy.com/topic/codes/)
-* [Reference: Code](https://docs.routegy.com/reference/codes/)
+ Check out the [Topic: Code](https://docs.routegy.com/topic/codes/) and [Reference: Code](https://docs.routegy.com/reference/codes/) pages for more information.
 
 <h3 id="get-code-by-short-id-parameters">Parameters</h3>
 
@@ -429,6 +560,14 @@ Accept: application/json
 
 ```
 
+```shell
+# You can also use wget
+curl -X GET https://api.routegy.com/organizations \
+  -H 'Accept: application/json' \
+  -H 'X-ROUTEGY-API-KEY: API_KEY'
+
+```
+
 ```python
 import requests
 headers = {
@@ -456,6 +595,32 @@ result = RestClient.get 'https://api.routegy.com/organizations',
   }, headers: headers
 
 p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.routegy.com/organizations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -516,6 +681,15 @@ Accept: application/json
 
 ```
 
+```shell
+# You can also use wget
+curl -X POST https://api.routegy.com/organizations \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'X-ROUTEGY-API-KEY: API_KEY'
+
+```
+
 ```python
 import requests
 headers = {
@@ -545,6 +719,33 @@ result = RestClient.post 'https://api.routegy.com/organizations',
   }, headers: headers
 
 p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://api.routegy.com/organizations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
 
 ```
 
@@ -627,6 +828,600 @@ Create a new organization.
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+ApiKeyAuth
+</aside>
+
+## Get organization by id
+
+<a id="opIdget_organization"></a>
+
+> Code samples
+
+```http
+GET https://api.routegy.com/organizations/{id} HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.routegy.com/organizations/{id} \
+  -H 'Accept: application/json' \
+  -H 'X-ROUTEGY-API-KEY: API_KEY'
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'X-ROUTEGY-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://api.routegy.com/organizations/{id}', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'X-ROUTEGY-API-KEY' => 'API_KEY'
+}
+
+result = RestClient.get 'https://api.routegy.com/organizations/{id}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.routegy.com/organizations/{id}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{id}`
+
+Get organization by its ID.
+
+**Related:**
+* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)
+* [Topic: Organization](https://docs.routegy.com/topic/organizations/)
+* [Reference: Organization](https://docs.routegy.com/reference/organizations/)
+
+<h3 id="get-organization-by-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string(uuid)|true|A UUID string identifying this organization.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "name": "My Test Organization",
+  "slug": "my-test-organization",
+  "description": "Organization where I test things",
+  "owner": {
+    "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+    "name": "John Smith",
+    "email": "john.smith@example.org"
+  },
+  "plan": {
+    "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+    "expires_at": "2020-04-27T23:09:35+0000",
+    "active": true,
+    "plan_type": {
+      "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "name": "Trial",
+      "slug": "trial",
+      "description": "Trial plan that enables limited use of the service",
+      "meta_data": {
+        "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+      },
+      "quotas": [
+        {
+          "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+          "name": "Touchpoints (20)",
+          "slug": "touchpoints-20",
+          "description": "Limit the number of touchpoints to 20",
+          "value": 20
+        }
+      ]
+    }
+  }
+}
+```
+
+<h3 id="get-organization-by-id-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[GetOrganizationResponse](#schemagetorganizationresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+ApiKeyAuth
+</aside>
+
+## Update organization by id
+
+<a id="opIdupdate_organization"></a>
+
+> Code samples
+
+```http
+PUT https://api.routegy.com/organizations/{id} HTTP/1.1
+Host: api.routegy.com
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```shell
+# You can also use wget
+curl -X PUT https://api.routegy.com/organizations/{id} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'X-ROUTEGY-API-KEY: API_KEY'
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'X-ROUTEGY-API-KEY': 'API_KEY'
+}
+
+r = requests.put('https://api.routegy.com/organizations/{id}', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'X-ROUTEGY-API-KEY' => 'API_KEY'
+}
+
+result = RestClient.put 'https://api.routegy.com/organizations/{id}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://api.routegy.com/organizations/{id}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{id}`
+
+Update organization by its id
+
+> Body parameter
+
+```json
+{
+  "name": "My Test Organization",
+  "description": "Organization where I test things",
+  "owner": "27B4CF49-88CD-4960-B397-13443DD24402",
+  "plan": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D"
+}
+```
+
+<h3 id="update-organization-by-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[UpdateOrganizationRequest](#schemaupdateorganizationrequest)|true|none|
+|id|path|string(uuid)|true|A UUID string identifying this organization.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "name": "My Test Organization",
+  "slug": "my-test-organization",
+  "description": "Organization where I test things",
+  "owner": {
+    "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+    "name": "John Smith",
+    "email": "john.smith@example.org"
+  },
+  "plan": {
+    "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+    "expires_at": "2020-04-27T23:09:35+0000",
+    "active": true,
+    "plan_type": {
+      "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "name": "Trial",
+      "slug": "trial",
+      "description": "Trial plan that enables limited use of the service",
+      "meta_data": {
+        "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+      },
+      "quotas": [
+        {
+          "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+          "name": "Touchpoints (20)",
+          "slug": "touchpoints-20",
+          "description": "Limit the number of touchpoints to 20",
+          "value": 20
+        }
+      ]
+    }
+  }
+}
+```
+
+<h3 id="update-organization-by-id-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[UpdateOrganizationResponse](#schemaupdateorganizationresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+ApiKeyAuth
+</aside>
+
+## Patch organization by id
+
+<a id="opIdpatch_organization"></a>
+
+> Code samples
+
+```http
+PATCH https://api.routegy.com/organizations/{id} HTTP/1.1
+Host: api.routegy.com
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```shell
+# You can also use wget
+curl -X PATCH https://api.routegy.com/organizations/{id} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'X-ROUTEGY-API-KEY: API_KEY'
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'X-ROUTEGY-API-KEY': 'API_KEY'
+}
+
+r = requests.patch('https://api.routegy.com/organizations/{id}', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'X-ROUTEGY-API-KEY' => 'API_KEY'
+}
+
+result = RestClient.patch 'https://api.routegy.com/organizations/{id}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PATCH", "https://api.routegy.com/organizations/{id}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PATCH /organizations/{id}`
+
+Patch organization by its id
+
+> Body parameter
+
+```json
+{
+  "name": "My Test Organization",
+  "description": "Organization where I test things",
+  "owner": "27B4CF49-88CD-4960-B397-13443DD24402",
+  "plan": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D"
+}
+```
+
+<h3 id="patch-organization-by-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[PatchUpdateOrganizationRequest](#schemapatchupdateorganizationrequest)|true|none|
+|id|path|string(uuid)|true|A UUID string identifying this organization.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "name": "My Test Organization",
+  "slug": "my-test-organization",
+  "description": "Organization where I test things",
+  "owner": {
+    "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+    "name": "John Smith",
+    "email": "john.smith@example.org"
+  },
+  "plan": {
+    "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+    "expires_at": "2020-04-27T23:09:35+0000",
+    "active": true,
+    "plan_type": {
+      "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "name": "Trial",
+      "slug": "trial",
+      "description": "Trial plan that enables limited use of the service",
+      "meta_data": {
+        "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+      },
+      "quotas": [
+        {
+          "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+          "name": "Touchpoints (20)",
+          "slug": "touchpoints-20",
+          "description": "Limit the number of touchpoints to 20",
+          "value": 20
+        }
+      ]
+    }
+  }
+}
+```
+
+<h3 id="patch-organization-by-id-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[PatchUpdateOrganizationResponse](#schemapatchupdateorganizationresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+ApiKeyAuth
+</aside>
+
+## Delete organization by id
+
+<a id="opIddelete_organization"></a>
+
+> Code samples
+
+```http
+DELETE https://api.routegy.com/organizations/{id} HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
+```shell
+# You can also use wget
+curl -X DELETE https://api.routegy.com/organizations/{id} \
+  -H 'Accept: application/json' \
+  -H 'X-ROUTEGY-API-KEY: API_KEY'
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'X-ROUTEGY-API-KEY': 'API_KEY'
+}
+
+r = requests.delete('https://api.routegy.com/organizations/{id}', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'X-ROUTEGY-API-KEY' => 'API_KEY'
+}
+
+result = RestClient.delete 'https://api.routegy.com/organizations/{id}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "https://api.routegy.com/organizations/{id}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /organizations/{id}`
+
+Delete organization by its id
+
+<h3 id="delete-organization-by-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string(uuid)|true|A UUID string identifying this organization.|
+
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "detail": "Bad Request.",
+  "status_code": 400,
+  "error_id": null
+}
+```
+
+<h3 id="delete-organization-by-id-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Success|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -1023,6 +1818,184 @@ Response containing a list of organizations
 <a id="schema_GetOrganizationResponse"></a>
 <a id="tocSgetorganizationresponse"></a>
 <a id="tocsgetorganizationresponse"></a>
+
+```json
+{
+  "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "name": "My Test Organization",
+  "slug": "my-test-organization",
+  "description": "Organization where I test things",
+  "owner": {
+    "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+    "name": "John Smith",
+    "email": "john.smith@example.org"
+  },
+  "plan": {
+    "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+    "expires_at": "2020-04-27T23:09:35+0000",
+    "active": true,
+    "plan_type": {
+      "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "name": "Trial",
+      "slug": "trial",
+      "description": "Trial plan that enables limited use of the service",
+      "meta_data": {
+        "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+      },
+      "quotas": [
+        {
+          "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+          "name": "Touchpoints (20)",
+          "slug": "touchpoints-20",
+          "description": "Limit the number of touchpoints to 20",
+          "value": 20
+        }
+      ]
+    }
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(uuid)|false|read-only|ID of the organization|
+|url|string(uri)|false|read-only|URL of the organization|
+|created_at|string(date-time)|false|read-only|Datetime when organization was created|
+|updated_at|string(date-time)|false|read-only|Datetime when organization was last updated|
+|name|string|false|none|Name of the organization|
+|slug|string(slug)|false|read-only|Slug of the organization|
+|description|string|false|none|Description of the organization|
+|owner|object|false|none|User who owns this organization|
+|plan|object|false|none|Plan of the organization|
+
+<h2 id="tocS_UpdateOrganizationRequest">UpdateOrganizationRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemaupdateorganizationrequest"></a>
+<a id="schema_UpdateOrganizationRequest"></a>
+<a id="tocSupdateorganizationrequest"></a>
+<a id="tocsupdateorganizationrequest"></a>
+
+```json
+{
+  "name": "My Test Organization",
+  "description": "Organization where I test things",
+  "owner": "27B4CF49-88CD-4960-B397-13443DD24402",
+  "plan": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|false|none|Name of the organization|
+|description|string|false|none|Description of the organization|
+|owner|string(uuid)|false|none|User who owns this organization|
+|plan|string(uuid)|false|none|Plan of the organization|
+
+<h2 id="tocS_UpdateOrganizationResponse">UpdateOrganizationResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaupdateorganizationresponse"></a>
+<a id="schema_UpdateOrganizationResponse"></a>
+<a id="tocSupdateorganizationresponse"></a>
+<a id="tocsupdateorganizationresponse"></a>
+
+```json
+{
+  "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "name": "My Test Organization",
+  "slug": "my-test-organization",
+  "description": "Organization where I test things",
+  "owner": {
+    "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+    "name": "John Smith",
+    "email": "john.smith@example.org"
+  },
+  "plan": {
+    "id": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D",
+    "expires_at": "2020-04-27T23:09:35+0000",
+    "active": true,
+    "plan_type": {
+      "id": "e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "url": "https://api.routegy.com/plan-types/e38b1667-8246-4b92-b0d8-6a2a13d32c5a",
+      "name": "Trial",
+      "slug": "trial",
+      "description": "Trial plan that enables limited use of the service",
+      "meta_data": {
+        "stripe_plan_id": "plan_GV4hyt7qWfXHps"
+      },
+      "quotas": [
+        {
+          "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
+          "name": "Touchpoints (20)",
+          "slug": "touchpoints-20",
+          "description": "Limit the number of touchpoints to 20",
+          "value": 20
+        }
+      ]
+    }
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(uuid)|false|read-only|ID of the organization|
+|url|string(uri)|false|read-only|URL of the organization|
+|created_at|string(date-time)|false|read-only|Datetime when organization was created|
+|updated_at|string(date-time)|false|read-only|Datetime when organization was last updated|
+|name|string|false|none|Name of the organization|
+|slug|string(slug)|false|read-only|Slug of the organization|
+|description|string|false|none|Description of the organization|
+|owner|object|false|none|User who owns this organization|
+|plan|object|false|none|Plan of the organization|
+
+<h2 id="tocS_PatchUpdateOrganizationRequest">PatchUpdateOrganizationRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemapatchupdateorganizationrequest"></a>
+<a id="schema_PatchUpdateOrganizationRequest"></a>
+<a id="tocSpatchupdateorganizationrequest"></a>
+<a id="tocspatchupdateorganizationrequest"></a>
+
+```json
+{
+  "name": "My Test Organization",
+  "description": "Organization where I test things",
+  "owner": "27B4CF49-88CD-4960-B397-13443DD24402",
+  "plan": "0BF5E76C-4423-44D6-BF29-BA2DC7D7CF2D"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|false|none|Name of the organization|
+|description|string|false|none|Description of the organization|
+|owner|string(uuid)|false|none|User who owns this organization|
+|plan|string(uuid)|false|none|Plan of the organization|
+
+<h2 id="tocS_PatchUpdateOrganizationResponse">PatchUpdateOrganizationResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemapatchupdateorganizationresponse"></a>
+<a id="schema_PatchUpdateOrganizationResponse"></a>
+<a id="tocSpatchupdateorganizationresponse"></a>
+<a id="tocspatchupdateorganizationresponse"></a>
 
 ```json
 {
