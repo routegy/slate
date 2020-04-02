@@ -498,6 +498,62 @@
           "format": "uuid"
         }
       ]
+    },
+    "/organizations/{id}/activity": {
+      "get": {
+        "operationId": "get_organization_activity",
+        "summary": "Get organization activity stream by id",
+        "description": "Get activity stream for the organization by its id",
+        "parameters": [
+          { "$ref": "#/components/parameters/min_created_at" },
+          { "$ref": "#/components/parameters/max_created_at" },
+          { "$ref": "#/components/parameters/min_updated_at" },
+          { "$ref": "#/components/parameters/max_updated_at" },
+          { "$ref": "#/components/parameters/slug" },
+          { "$ref": "#/components/parameters/slug_regex" },
+          { "$ref": "#/components/parameters/name" },
+          { "$ref": "#/components/parameters/name_regex" },
+          { "$ref": "#/components/parameters/order_by" },
+          { "$ref": "#/components/parameters/search" },
+          { "$ref": "#/components/parameters/cursor" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/ActivityStreamResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Organizations"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A UUID string identifying this organization.",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }
+      ]
     }
   },
   "definitions": {
@@ -623,6 +679,133 @@
         "detail": "Not Found.",
         "status_code": 404,
         "error_id": null
+      }
+    },
+    "ActivityStreamResponse": {
+      "type": "object",
+      "description": "Response containing a list of activities",
+      "properties": {
+        "next": {
+          "type": "string",
+          "description": "URL to next page of results",
+          "format": "uri",
+          "x-nullable": true
+        },
+        "previous": {
+          "type": "string",
+          "description": "URL to previous page of results",
+          "format": "uri",
+          "x-nullable": true
+        },
+        "results": {
+          "type": "array",
+          "description": "Array containing page of results",
+          "items": {
+            "$ref": "#/definitions/ActivityResponse"
+          }
+        }
+      },
+      "example": {
+        "next": "https://api.routegy.com/.../activity?next=XXXXXX",
+        "previous": null,
+        "items": [
+          {
+            "id": "D216DCB8-CA9A-4B53-8468-A4A42E7EB63D",
+            "actor": {
+              "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+              "model_type": "user",
+              "name": "John Smith",
+              "email": "john.smith@example.org"
+            },
+            "verb": "created",
+            "action_object": {
+              "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+              "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+              "model_type": "organization",
+              "name": "My Test Organization",
+              "slug": "my-test-organization"
+            },
+            "target": null,
+            "timestamp": "2020-03-27T23:09:35+0000"
+          }
+        ]
+      }
+    },
+    "ActivityResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "ID of the activity",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "actor": {
+          "title": "Actor",
+          "description": "User that created the activity",
+          "type": "object",
+          "readOnly": true
+        },
+        "verb": {
+          "title": "Verb",
+          "description": "Phrase that identifies the activity",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "action_object": {
+          "title": "Action Object",
+          "description": "Object linked to the activity",
+          "type": "object",
+          "x-nullable": true,
+          "readOnly": true
+        },
+        "target": {
+          "title": "Target",
+          "description": "The object to which the activity was performed",
+          "type": "object",
+          "x-nullable": true,
+          "readOnly": true
+        },
+        "public": {
+          "title": "Public",
+          "description": "Flag indicating if the activity is public or private",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the activity",
+          "type": "string",
+          "readOnly": true
+        },
+        "timestamp": {
+          "title": "Timestamp",
+          "description": "Datetime when the activity happened",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      },
+      "example": {
+        "id": "D216DCB8-CA9A-4B53-8468-A4A42E7EB63D",
+        "actor": {
+          "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+          "model_type": "user",
+          "name": "John Smith",
+          "email": "john.smith@example.org"
+        },
+        "verb": "created",
+        "action_object": {
+          "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+          "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+          "model_type": "organization",
+          "name": "My Test Organization",
+          "slug": "my-test-organization"
+        },
+        "target": null,
+        "timestamp": "2020-03-27T23:09:35+0000"
       }
     },
     "GetCodeResponse": {

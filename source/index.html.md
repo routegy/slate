@@ -1428,6 +1428,140 @@ To perform this operation, you must be authenticated by means of one of the foll
 ApiKeyAuth
 </aside>
 
+## Get organization activity stream by id
+
+<a id="opIdget_organization_activity"></a>
+
+> Code samples
+
+```http
+GET https://api.routegy.com/organizations/{id}/activity HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.routegy.com/organizations/{id}/activity \
+  -H 'Accept: application/json' \
+  -H 'X-ROUTEGY-API-KEY: API_KEY'
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'X-ROUTEGY-API-KEY': 'API_KEY'
+}
+
+r = requests.get('https://api.routegy.com/organizations/{id}/activity', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'X-ROUTEGY-API-KEY' => 'API_KEY'
+}
+
+result = RestClient.get 'https://api.routegy.com/organizations/{id}/activity',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.routegy.com/organizations/{id}/activity", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{id}/activity`
+
+Get activity stream for the organization by its id
+
+<h3 id="get-organization-activity-stream-by-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string(uuid)|true|A UUID string identifying this organization.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "next": "https://api.routegy.com/.../activity?next=XXXXXX",
+  "previous": null,
+  "items": [
+    {
+      "id": "D216DCB8-CA9A-4B53-8468-A4A42E7EB63D",
+      "actor": {
+        "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+        "model_type": "user",
+        "name": "John Smith",
+        "email": "john.smith@example.org"
+      },
+      "verb": "created",
+      "action_object": {
+        "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "model_type": "organization",
+        "name": "My Test Organization",
+        "slug": "my-test-organization"
+      },
+      "target": null,
+      "timestamp": "2020-03-27T23:09:35+0000"
+    }
+  ]
+}
+```
+
+<h3 id="get-organization-activity-stream-by-id-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[ActivityStreamResponse](#schemaactivitystreamresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+ApiKeyAuth
+</aside>
+
 # Schemas
 
 <h2 id="tocS_BadRequestResponse">BadRequestResponse</h2>
@@ -1533,6 +1667,95 @@ Response body when requested resource is not found
 |detail|string|false|read-only|Details about the error|
 |status_code|integer|false|read-only|HTTP status code of the error|
 |error_id|integer¦null|false|read-only|ID of the error for external tracking|
+
+<h2 id="tocS_ActivityStreamResponse">ActivityStreamResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaactivitystreamresponse"></a>
+<a id="schema_ActivityStreamResponse"></a>
+<a id="tocSactivitystreamresponse"></a>
+<a id="tocsactivitystreamresponse"></a>
+
+```json
+{
+  "next": "https://api.routegy.com/.../activity?next=XXXXXX",
+  "previous": null,
+  "items": [
+    {
+      "id": "D216DCB8-CA9A-4B53-8468-A4A42E7EB63D",
+      "actor": {
+        "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+        "model_type": "user",
+        "name": "John Smith",
+        "email": "john.smith@example.org"
+      },
+      "verb": "created",
+      "action_object": {
+        "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+        "model_type": "organization",
+        "name": "My Test Organization",
+        "slug": "my-test-organization"
+      },
+      "target": null,
+      "timestamp": "2020-03-27T23:09:35+0000"
+    }
+  ]
+}
+
+```
+
+Response containing a list of activities
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|next|string(uri)¦null|false|none|URL to next page of results|
+|previous|string(uri)¦null|false|none|URL to previous page of results|
+|results|[[ActivityResponse](#schemaactivityresponse)]|false|none|Array containing page of results|
+
+<h2 id="tocS_ActivityResponse">ActivityResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaactivityresponse"></a>
+<a id="schema_ActivityResponse"></a>
+<a id="tocSactivityresponse"></a>
+<a id="tocsactivityresponse"></a>
+
+```json
+{
+  "id": "D216DCB8-CA9A-4B53-8468-A4A42E7EB63D",
+  "actor": {
+    "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+    "model_type": "user",
+    "name": "John Smith",
+    "email": "john.smith@example.org"
+  },
+  "verb": "created",
+  "action_object": {
+    "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+    "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+    "model_type": "organization",
+    "name": "My Test Organization",
+    "slug": "my-test-organization"
+  },
+  "target": null,
+  "timestamp": "2020-03-27T23:09:35+0000"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(uuid)|false|read-only|ID of the activity|
+|actor|object|false|read-only|User that created the activity|
+|verb|string|false|read-only|Phrase that identifies the activity|
+|action_object|object¦null|false|read-only|Object linked to the activity|
+|target|object¦null|false|read-only|The object to which the activity was performed|
+|public|boolean|false|read-only|Flag indicating if the activity is public or private|
+|description|string|false|read-only|Description of the activity|
+|timestamp|string(date-time)|false|read-only|Datetime when the activity happened|
 
 <h2 id="tocS_GetCodeResponse">GetCodeResponse</h2>
 <!-- backwards compatibility -->
