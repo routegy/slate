@@ -930,6 +930,13 @@
               "pattern": "^[-a-zA-Z0-9_]+$",
               "readOnly": true,
               "minLength": 1
+            },
+            "breadcrumbs": {
+              "title": "Breadcrumbs",
+              "type": "string",
+              "description": "Breadcrumbs of the location",
+              "readOnly": true,
+              "minLength": 1
             }
           }
         },
@@ -1000,7 +1007,8 @@
         "location": {
           "name": "Break room",
           "slug": "break-room",
-          "description": "Employee break room"
+          "description": "Employee break room",
+          "breadcrumbs": "Office / Floor 1"
         },
         "schema": {
           "name": "Coffee Machine",

@@ -148,7 +148,8 @@ Get touchpoint from code short id.
   "location": {
     "name": "Break room",
     "slug": "break-room",
-    "description": "Employee break room"
+    "description": "Employee break room",
+    "breadcrumbs": "Office / Floor 1"
   },
   "schema": {
     "name": "Coffee Machine",
@@ -1828,7 +1829,8 @@ Response containing a list of activities
   "location": {
     "name": "Break room",
     "slug": "break-room",
-    "description": "Employee break room"
+    "description": "Employee break room",
+    "breadcrumbs": "Office / Floor 1"
   },
   "schema": {
     "name": "Coffee Machine",
@@ -1880,6 +1882,7 @@ Response containing a list of activities
 |» name|string|false|none|Name of the location|
 |» description|string|false|none|Description of the location|
 |» slug|string(slug)|false|read-only|Slug of the location|
+|» breadcrumbs|string|false|read-only|Breadcrumbs of the location|
 |schema|object|false|none|Schema of the touchpoint|
 |» name|string|false|none|Name of the schema|
 |» description|string|false|none|Description of the schema|
