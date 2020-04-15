@@ -254,7 +254,7 @@
       "get": {
         "operationId": "list_organizations",
         "summary": "List organizations",
-        "description": "List all organizations for the authenticated user.\n\n**Related:**\n* [Topic: Organization](https://docs.routegy.com/topic/organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations/)",
+        "description": "List all organizations for the authenticated user.",
         "parameters": [
           { "$ref": "#/components/parameters/min_created_at" },
           { "$ref": "#/components/parameters/max_created_at" },
@@ -700,6 +700,55 @@
           "type": "string",
           "format": "uuid"
         }
+      ]
+    },
+    "/workspaces": {
+      "get": {
+        "operationId": "list_workspaces",
+        "summary": "List workspaces",
+        "description": "List all workspaces for the authenticated user.",
+        "parameters": [
+          { "$ref": "#/components/parameters/min_created_at" },
+          { "$ref": "#/components/parameters/max_created_at" },
+          { "$ref": "#/components/parameters/min_updated_at" },
+          { "$ref": "#/components/parameters/max_updated_at" },
+          { "$ref": "#/components/parameters/slug" },
+          { "$ref": "#/components/parameters/slug_regex" },
+          { "$ref": "#/components/parameters/name" },
+          { "$ref": "#/components/parameters/name_regex" },
+          { "$ref": "#/components/parameters/order_by" },
+          { "$ref": "#/components/parameters/search" },
+          { "$ref": "#/components/parameters/cursor" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/ListWorkspacesResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Workspaces"
+        ]
+      },
+      "parameters": [
+
       ]
     }
   },
@@ -1870,6 +1919,102 @@
           "name": "John Smith",
           "email": "john.smith@example.org"
         }
+      }
+    },
+    "ListWorkspacesResponse": {
+      "type": "object",
+      "description": "Response containing a list of workspaces",
+      "properties": {
+        "next": {
+          "type": "string",
+          "description": "URL to next page of results",
+          "format": "uri",
+          "x-nullable": true
+        },
+        "previous": {
+          "type": "string",
+          "description": "URL to previous page of results",
+          "format": "uri",
+          "x-nullable": true
+        },
+        "results": {
+          "type": "array",
+          "description": "Array containing page of results",
+          "items": {
+            "$ref": "#/definitions/ListWorkspaceResponse"
+          }
+        }
+      },
+      "example": {
+        "next": "https://api.routegy.com/workspaces?next=XXXXXX",
+        "previous": null,
+        "items": [
+          {
+            "id": "695D2753-4A29-4853-B85D-B1A7462B1FF8",
+            "url": "https://api.routegy.com/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8",
+            "name": "Seattle Campus",
+            "slug": "seattle-campus",
+            "description": "Our Seattle area campus",
+            "organization": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93"
+          }
+        ]
+      }
+    },
+    "ListWorkspaceResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "ID of the workspace",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "description": "URL of the workspace",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the workspace",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "description": "Slug of the workspace",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the workspace",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "organization": {
+          "title": "Id",
+          "description": "ID of the workspace organization",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        }
+      },
+      "example": {
+        "id": "695D2753-4A29-4853-B85D-B1A7462B1FF8",
+        "url": "https://api.routegy.com/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8",
+        "name": "Seattle Campus",
+        "slug": "seattle-campus",
+        "description": "Our Seattle area campus",
+        "organization": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93"
       }
     }
   },

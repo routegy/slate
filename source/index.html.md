@@ -635,10 +635,6 @@ func main() {
 
 List all organizations for the authenticated user.
 
-**Related:**
-* [Topic: Organization](https://docs.routegy.com/topic/organizations/)
-* [Reference: Organization](https://docs.routegy.com/reference/organizations/)
-
 > Example responses
 
 > 200 Response
@@ -1921,6 +1917,123 @@ To perform this operation, you must be authenticated by means of one of the foll
 OAuth2
 </aside>
 
+## List workspaces
+
+<a id="opIdlist_workspaces"></a>
+
+> Code samples
+
+```http
+GET https://api.routegy.com/workspaces HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.routegy.com/workspaces \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://api.routegy.com/workspaces', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://api.routegy.com/workspaces',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.routegy.com/workspaces", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /workspaces`
+
+List all workspaces for the authenticated user.
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "next": "https://api.routegy.com/workspaces?next=XXXXXX",
+  "previous": null,
+  "items": [
+    {
+      "id": "695D2753-4A29-4853-B85D-B1A7462B1FF8",
+      "url": "https://api.routegy.com/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8",
+      "name": "Seattle Campus",
+      "slug": "seattle-campus",
+      "description": "Our Seattle area campus",
+      "organization": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93"
+    }
+  ]
+}
+```
+
+<h3 id="list-workspaces-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[ListWorkspacesResponse](#schemalistworkspacesresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+OAuth2
+</aside>
+
 # Schemas
 
 <h2 id="tocS_BadRequestResponse">BadRequestResponse</h2>
@@ -2699,4 +2812,69 @@ Response containing a list of followers
 |---|---|---|---|---|
 |id|string(date-time)|false|read-only|Datetime when user started following this resource|
 |user|string(uri)|false|read-only|User following this resource|
+
+<h2 id="tocS_ListWorkspacesResponse">ListWorkspacesResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemalistworkspacesresponse"></a>
+<a id="schema_ListWorkspacesResponse"></a>
+<a id="tocSlistworkspacesresponse"></a>
+<a id="tocslistworkspacesresponse"></a>
+
+```json
+{
+  "next": "https://api.routegy.com/workspaces?next=XXXXXX",
+  "previous": null,
+  "items": [
+    {
+      "id": "695D2753-4A29-4853-B85D-B1A7462B1FF8",
+      "url": "https://api.routegy.com/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8",
+      "name": "Seattle Campus",
+      "slug": "seattle-campus",
+      "description": "Our Seattle area campus",
+      "organization": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93"
+    }
+  ]
+}
+
+```
+
+Response containing a list of workspaces
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|next|string(uri)¦null|false|none|URL to next page of results|
+|previous|string(uri)¦null|false|none|URL to previous page of results|
+|results|[[ListWorkspaceResponse](#schemalistworkspaceresponse)]|false|none|Array containing page of results|
+
+<h2 id="tocS_ListWorkspaceResponse">ListWorkspaceResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemalistworkspaceresponse"></a>
+<a id="schema_ListWorkspaceResponse"></a>
+<a id="tocSlistworkspaceresponse"></a>
+<a id="tocslistworkspaceresponse"></a>
+
+```json
+{
+  "id": "695D2753-4A29-4853-B85D-B1A7462B1FF8",
+  "url": "https://api.routegy.com/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8",
+  "name": "Seattle Campus",
+  "slug": "seattle-campus",
+  "description": "Our Seattle area campus",
+  "organization": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(uuid)|false|read-only|ID of the workspace|
+|url|string(uri)|false|read-only|URL of the workspace|
+|name|string|false|read-only|Name of the workspace|
+|slug|string(slug)|false|read-only|Slug of the workspace|
+|description|string|false|read-only|Description of the workspace|
+|organization|string(uuid)|false|read-only|ID of the workspace organization|
 
