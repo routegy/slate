@@ -1569,6 +1569,120 @@ To perform this operation, you must be authenticated by means of one of the foll
 OAuth2
 </aside>
 
+## Follow organization activities
+
+<a id="opIdfollow_organization"></a>
+
+> Code samples
+
+```http
+POST https://api.routegy.com/organizations/{id}/follow HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.routegy.com/organizations/{id}/follow \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('https://api.routegy.com/organizations/{id}/follow', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.post 'https://api.routegy.com/organizations/{id}/follow',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://api.routegy.com/organizations/{id}/follow", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{id}/follow`
+
+Follow an organization by its id to include it in your activity stream.
+
+<h3 id="follow-organization-activities-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string(uuid)|true|A UUID string identifying this organization.|
+
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "detail": "Bad Request.",
+  "status_code": 400,
+  "error_id": null
+}
+```
+
+<h3 id="follow-organization-activities-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Success|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+OAuth2
+</aside>
+
 # Schemas
 
 <h2 id="tocS_BadRequestResponse">BadRequestResponse</h2>

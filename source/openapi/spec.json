@@ -556,6 +556,50 @@
           "format": "uuid"
         }
       ]
+    },
+    "/organizations/{id}/follow": {
+      "post": {
+        "operationId": "follow_organization",
+        "summary": "Follow organization activities",
+        "description": "Follow an organization by its id to include it in your activity stream.",
+        "parameters": [
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Organizations"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A UUID string identifying this organization.",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }
+      ]
     }
   },
   "definitions": {
