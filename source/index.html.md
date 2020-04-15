@@ -1797,6 +1797,130 @@ To perform this operation, you must be authenticated by means of one of the foll
 OAuth2
 </aside>
 
+## List organization followers
+
+<a id="opIdlist_organizations_followers"></a>
+
+> Code samples
+
+```http
+GET https://api.routegy.com/organizations/{id}/followers HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.routegy.com/organizations/{id}/followers \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://api.routegy.com/organizations/{id}/followers', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://api.routegy.com/organizations/{id}/followers',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.routegy.com/organizations/{id}/followers", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{id}/followers`
+
+List users that follow an organization by its id.
+
+<h3 id="list-organization-followers-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string(uuid)|true|A UUID string identifying this organization.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "next": "https://api.routegy.com/.../followers?next=XXXXXX",
+  "previous": null,
+  "items": [
+    {
+      "started": "2020-04-27T23:09:35+0000",
+      "user": {
+        "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+        "model_type": "user",
+        "name": "John Smith",
+        "email": "john.smith@example.org"
+      }
+    }
+  ]
+}
+```
+
+<h3 id="list-organization-followers-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[ListFollowersResponse](#schemalistfollowersresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+OAuth2
+</aside>
+
 # Schemas
 
 <h2 id="tocS_BadRequestResponse">BadRequestResponse</h2>
@@ -2512,4 +2636,67 @@ Response containing a list of organizations
 |description|string|false|none|Description of the organization|
 |owner|object|false|none|User who owns this organization|
 |plan|object|false|none|Plan of the organization|
+
+<h2 id="tocS_ListFollowersResponse">ListFollowersResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemalistfollowersresponse"></a>
+<a id="schema_ListFollowersResponse"></a>
+<a id="tocSlistfollowersresponse"></a>
+<a id="tocslistfollowersresponse"></a>
+
+```json
+{
+  "next": "https://api.routegy.com/.../followers?next=XXXXXX",
+  "previous": null,
+  "items": [
+    {
+      "started": "2020-04-27T23:09:35+0000",
+      "user": {
+        "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+        "model_type": "user",
+        "name": "John Smith",
+        "email": "john.smith@example.org"
+      }
+    }
+  ]
+}
+
+```
+
+Response containing a list of followers
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|next|string(uri)¦null|false|none|URL to next page of results|
+|previous|string(uri)¦null|false|none|URL to previous page of results|
+|results|[[ListFollowerResponse](#schemalistfollowerresponse)]|false|none|Array containing page of results|
+
+<h2 id="tocS_ListFollowerResponse">ListFollowerResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemalistfollowerresponse"></a>
+<a id="schema_ListFollowerResponse"></a>
+<a id="tocSlistfollowerresponse"></a>
+<a id="tocslistfollowerresponse"></a>
+
+```json
+{
+  "started": "2020-04-27T23:09:35+0000",
+  "user": {
+    "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+    "model_type": "user",
+    "name": "John Smith",
+    "email": "john.smith@example.org"
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(date-time)|false|read-only|Datetime when user started following this resource|
+|user|string(uri)|false|read-only|User following this resource|
 

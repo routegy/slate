@@ -645,6 +645,62 @@
           "format": "uuid"
         }
       ]
+    },
+    "/organizations/{id}/followers": {
+      "get": {
+        "operationId": "list_organizations_followers",
+        "summary": "List organization followers",
+        "description": "List users that follow an organization by its id.",
+        "parameters": [
+          { "$ref": "#/components/parameters/min_created_at" },
+          { "$ref": "#/components/parameters/max_created_at" },
+          { "$ref": "#/components/parameters/min_updated_at" },
+          { "$ref": "#/components/parameters/max_updated_at" },
+          { "$ref": "#/components/parameters/slug" },
+          { "$ref": "#/components/parameters/slug_regex" },
+          { "$ref": "#/components/parameters/name" },
+          { "$ref": "#/components/parameters/name_regex" },
+          { "$ref": "#/components/parameters/order_by" },
+          { "$ref": "#/components/parameters/search" },
+          { "$ref": "#/components/parameters/cursor" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/ListFollowersResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Organizations"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A UUID string identifying this organization.",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }
+      ]
     }
   },
   "definitions": {
@@ -1745,6 +1801,74 @@
               }
             ]
           }
+        }
+      }
+    },
+    "ListFollowersResponse": {
+      "type": "object",
+      "description": "Response containing a list of followers",
+      "properties": {
+        "next": {
+          "type": "string",
+          "description": "URL to next page of results",
+          "format": "uri",
+          "x-nullable": true
+        },
+        "previous": {
+          "type": "string",
+          "description": "URL to previous page of results",
+          "format": "uri",
+          "x-nullable": true
+        },
+        "results": {
+          "type": "array",
+          "description": "Array containing page of results",
+          "items": {
+            "$ref": "#/definitions/ListFollowerResponse"
+          }
+        }
+      },
+      "example": {
+        "next": "https://api.routegy.com/.../followers?next=XXXXXX",
+        "previous": null,
+        "items": [
+          {
+            "started": "2020-04-27T23:09:35+0000",
+            "user": {
+              "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+              "model_type": "user",
+              "name": "John Smith",
+              "email": "john.smith@example.org"
+            }
+          }
+        ]
+      }
+    },
+    "ListFollowerResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Started",
+          "description": "Datetime when user started following this resource",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "user": {
+          "title": "User",
+          "description": "User following this resource",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        }
+      },
+      "example": {
+        "started": "2020-04-27T23:09:35+0000",
+        "user": {
+          "id": "27B4CF49-88CD-4960-B397-13443DD24402",
+          "model_type": "user",
+          "name": "John Smith",
+          "email": "john.smith@example.org"
         }
       }
     }
