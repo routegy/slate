@@ -25,15 +25,17 @@
     "application/json"
   ],
   "securityDefinitions": {
-    "ApiKeyAuth": {
-      "type": "apiKey",
-      "in": "header",
-      "name": "X-ROUTEGY-API-KEY"
+    "OAuth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://auth.routegy.com/authorization",
+      "tokenUrl": "https://tokens.routegy.com/oauth/token",
+      "scopes": []
     }
   },
   "security": [
     {
-      "ApiKeyAuth": [
+      "OAuth2": [
 
       ]
     }

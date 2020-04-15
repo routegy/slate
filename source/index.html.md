@@ -38,8 +38,14 @@ Email: <a href="mailto:support@routegy.com">Support</a>
 
 # Authentication
 
-* API Key (ApiKeyAuth)
-    - Parameter Name: **X-ROUTEGY-API-KEY**, in: header. 
+- oAuth2 authentication. 
+
+    - Flow: authorizationCode
+    - Authorization URL = [https://auth.routegy.com/authorization](https://auth.routegy.com/authorization)
+    - Token URL = [https://tokens.routegy.com/oauth/token](https://tokens.routegy.com/oauth/token)
+
+|Scope|Scope Description|
+|---|---|
 
 <h1 id="routegy-api-public-api">Public API</h1>
 
@@ -326,7 +332,7 @@ Accept: application/json
 # You can also use wget
 curl -X GET https://api.routegy.com/codes/{id} \
   -H 'Accept: application/json' \
-  -H 'X-ROUTEGY-API-KEY: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -334,7 +340,7 @@ curl -X GET https://api.routegy.com/codes/{id} \
 import requests
 headers = {
   'Accept': 'application/json',
-  'X-ROUTEGY-API-KEY': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://api.routegy.com/codes/{id}', headers = headers)
@@ -349,7 +355,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'X-ROUTEGY-API-KEY' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://api.routegy.com/codes/{id}',
@@ -372,7 +378,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -425,7 +431,7 @@ Get code by its ID.
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-ApiKeyAuth
+OAuth2
 </aside>
 
 ## Get code by short id
@@ -445,7 +451,7 @@ Accept: application/json
 # You can also use wget
 curl -X GET https://api.routegy.com/codes/{short_id} \
   -H 'Accept: application/json' \
-  -H 'X-ROUTEGY-API-KEY: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -453,7 +459,7 @@ curl -X GET https://api.routegy.com/codes/{short_id} \
 import requests
 headers = {
   'Accept': 'application/json',
-  'X-ROUTEGY-API-KEY': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://api.routegy.com/codes/{short_id}', headers = headers)
@@ -468,7 +474,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'X-ROUTEGY-API-KEY' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://api.routegy.com/codes/{short_id}',
@@ -491,7 +497,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -544,7 +550,7 @@ Get code by its short ID.
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-ApiKeyAuth
+OAuth2
 </aside>
 
 ## List organizations
@@ -564,7 +570,7 @@ Accept: application/json
 # You can also use wget
 curl -X GET https://api.routegy.com/organizations \
   -H 'Accept: application/json' \
-  -H 'X-ROUTEGY-API-KEY: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -572,7 +578,7 @@ curl -X GET https://api.routegy.com/organizations \
 import requests
 headers = {
   'Accept': 'application/json',
-  'X-ROUTEGY-API-KEY': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://api.routegy.com/organizations', headers = headers)
@@ -587,7 +593,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'X-ROUTEGY-API-KEY' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://api.routegy.com/organizations',
@@ -610,7 +616,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -664,7 +670,7 @@ List all organizations for the authenticated user.
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-ApiKeyAuth
+OAuth2
 </aside>
 
 ## Create new organization
@@ -686,7 +692,7 @@ Accept: application/json
 curl -X POST https://api.routegy.com/organizations \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'X-ROUTEGY-API-KEY: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -695,7 +701,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'X-ROUTEGY-API-KEY': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://api.routegy.com/organizations', headers = headers)
@@ -711,7 +717,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'X-ROUTEGY-API-KEY' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://api.routegy.com/organizations',
@@ -735,7 +741,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -831,7 +837,7 @@ Create a new organization.
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-ApiKeyAuth
+OAuth2
 </aside>
 
 ## Get organization by id
@@ -851,7 +857,7 @@ Accept: application/json
 # You can also use wget
 curl -X GET https://api.routegy.com/organizations/{id} \
   -H 'Accept: application/json' \
-  -H 'X-ROUTEGY-API-KEY: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -859,7 +865,7 @@ curl -X GET https://api.routegy.com/organizations/{id} \
 import requests
 headers = {
   'Accept': 'application/json',
-  'X-ROUTEGY-API-KEY': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://api.routegy.com/organizations/{id}', headers = headers)
@@ -874,7 +880,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'X-ROUTEGY-API-KEY' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://api.routegy.com/organizations/{id}',
@@ -897,7 +903,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -983,7 +989,7 @@ Get organization by its ID.
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-ApiKeyAuth
+OAuth2
 </aside>
 
 ## Update organization by id
@@ -1005,7 +1011,7 @@ Accept: application/json
 curl -X PUT https://api.routegy.com/organizations/{id} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'X-ROUTEGY-API-KEY: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1014,7 +1020,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'X-ROUTEGY-API-KEY': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.put('https://api.routegy.com/organizations/{id}', headers = headers)
@@ -1030,7 +1036,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'X-ROUTEGY-API-KEY' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://api.routegy.com/organizations/{id}',
@@ -1054,7 +1060,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1147,7 +1153,7 @@ Update organization by its id
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-ApiKeyAuth
+OAuth2
 </aside>
 
 ## Patch organization by id
@@ -1169,7 +1175,7 @@ Accept: application/json
 curl -X PATCH https://api.routegy.com/organizations/{id} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'X-ROUTEGY-API-KEY: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1178,7 +1184,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'X-ROUTEGY-API-KEY': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.patch('https://api.routegy.com/organizations/{id}', headers = headers)
@@ -1194,7 +1200,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'X-ROUTEGY-API-KEY' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.patch 'https://api.routegy.com/organizations/{id}',
@@ -1218,7 +1224,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1311,7 +1317,7 @@ Patch organization by its id
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-ApiKeyAuth
+OAuth2
 </aside>
 
 ## Delete organization by id
@@ -1331,7 +1337,7 @@ Accept: application/json
 # You can also use wget
 curl -X DELETE https://api.routegy.com/organizations/{id} \
   -H 'Accept: application/json' \
-  -H 'X-ROUTEGY-API-KEY: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1339,7 +1345,7 @@ curl -X DELETE https://api.routegy.com/organizations/{id} \
 import requests
 headers = {
   'Accept': 'application/json',
-  'X-ROUTEGY-API-KEY': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.delete('https://api.routegy.com/organizations/{id}', headers = headers)
@@ -1354,7 +1360,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'X-ROUTEGY-API-KEY' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://api.routegy.com/organizations/{id}',
@@ -1377,7 +1383,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1425,7 +1431,7 @@ Delete organization by its id
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-ApiKeyAuth
+OAuth2
 </aside>
 
 ## Get organization activity stream by id
@@ -1445,7 +1451,7 @@ Accept: application/json
 # You can also use wget
 curl -X GET https://api.routegy.com/organizations/{id}/activity \
   -H 'Accept: application/json' \
-  -H 'X-ROUTEGY-API-KEY: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1453,7 +1459,7 @@ curl -X GET https://api.routegy.com/organizations/{id}/activity \
 import requests
 headers = {
   'Accept': 'application/json',
-  'X-ROUTEGY-API-KEY': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://api.routegy.com/organizations/{id}/activity', headers = headers)
@@ -1468,7 +1474,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'X-ROUTEGY-API-KEY' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://api.routegy.com/organizations/{id}/activity',
@@ -1491,7 +1497,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        "X-ROUTEGY-API-KEY": []string{"API_KEY"},
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1559,7 +1565,7 @@ Get activity stream for the organization by its id
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-ApiKeyAuth
+OAuth2
 </aside>
 
 # Schemas
