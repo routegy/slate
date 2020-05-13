@@ -2034,6 +2034,140 @@ To perform this operation, you must be authenticated by means of one of the foll
 OAuth2
 </aside>
 
+## Get workspace by id
+
+<a id="opIdget_workspace"></a>
+
+> Code samples
+
+```http
+GET https://api.routegy.com/workspaces/{id} HTTP/1.1
+Host: api.routegy.com
+Accept: application/json
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.routegy.com/workspaces/{id} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://api.routegy.com/workspaces/{id}', headers = headers)
+
+print(r.json())
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://api.routegy.com/workspaces/{id}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://api.routegy.com/workspaces/{id}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /workspaces/{id}`
+
+Get workspace from its id.
+
+<h3 id="get-workspace-by-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string(uuid)|true|A UUID string identifying this workspace.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "695D2753-4A29-4853-B85D-B1A7462B1FF8",
+  "url": "https://api.routegy.com/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "name": "Seattle Campus",
+  "slug": "seattle-campus",
+  "description": "Our Seattle area campus",
+  "organization": {
+    "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+    "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+    "name": "My Test Organization",
+    "slug": "my-test-organization",
+    "description": "Organization where I test things"
+  },
+  "location": {
+    "id": "0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
+    "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8/locations/0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
+    "name": "Seattle Campus",
+    "slug": "seattle-campus",
+    "description": "Root location for Seattle Campus",
+    "level": 0,
+    "workspace": "695D2753-4A29-4853-B85D-B1A7462B1FF8"
+  }
+}
+```
+
+<h3 id="get-workspace-by-id-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[GetWorkspaceResponse](#schemagetworkspaceresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|[NotFoundResponse](#schemanotfoundresponse)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+OAuth2
+</aside>
+
 # Schemas
 
 <h2 id="tocS_BadRequestResponse">BadRequestResponse</h2>
@@ -2877,4 +3011,54 @@ Response containing a list of workspaces
 |slug|string(slug)|false|read-only|Slug of the workspace|
 |description|string|false|read-only|Description of the workspace|
 |organization|string(uuid)|false|read-only|ID of the workspace organization|
+
+<h2 id="tocS_GetWorkspaceResponse">GetWorkspaceResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemagetworkspaceresponse"></a>
+<a id="schema_GetWorkspaceResponse"></a>
+<a id="tocSgetworkspaceresponse"></a>
+<a id="tocsgetworkspaceresponse"></a>
+
+```json
+{
+  "id": "695D2753-4A29-4853-B85D-B1A7462B1FF8",
+  "url": "https://api.routegy.com/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8",
+  "created_at": "2020-03-27T23:09:35+0000",
+  "updated_at": "2020-03-27T23:09:35+0000",
+  "name": "Seattle Campus",
+  "slug": "seattle-campus",
+  "description": "Our Seattle area campus",
+  "organization": {
+    "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+    "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+    "name": "My Test Organization",
+    "slug": "my-test-organization",
+    "description": "Organization where I test things"
+  },
+  "location": {
+    "id": "0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
+    "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8/locations/0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
+    "name": "Seattle Campus",
+    "slug": "seattle-campus",
+    "description": "Root location for Seattle Campus",
+    "level": 0,
+    "workspace": "695D2753-4A29-4853-B85D-B1A7462B1FF8"
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string(uuid)|false|read-only|ID of the workspace|
+|url|string(uri)|false|read-only|URL of the workspace|
+|created_at|string(date-time)|false|read-only|Datetime when workspace was created|
+|updated_at|string(date-time)|false|read-only|Datetime when workspace was last updated|
+|name|string|false|read-only|Name of the workspace|
+|slug|string(slug)|false|read-only|Slug of the workspace|
+|description|string|false|read-only|Description of the workspace|
+|organization|object|false|read-only|Organization of the workspace|
+|location|object|false|read-only|Root location of the workspace|
 

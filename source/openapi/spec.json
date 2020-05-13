@@ -750,6 +750,49 @@
       "parameters": [
 
       ]
+    },
+    "/workspaces/{id}": {
+      "get": {
+        "operationId": "get_workspace",
+        "summary": "Get workspace by id",
+        "description": "Get workspace from its id.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/GetWorkspaceResponse" }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": { "$ref": "#/definitions/BadRequestResponse" }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": { "$ref": "#/definitions/UnauthorizedResponse" }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": { "$ref": "#/definitions/ForbiddenResponse" }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": { "$ref": "#/definitions/NotFoundResponse" }
+          }
+        },
+        "tags": [
+          "Management API",
+          "Workspaces"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A UUID string identifying this workspace.",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }
+      ]
     }
   },
   "definitions": {
@@ -2015,6 +2058,99 @@
         "slug": "seattle-campus",
         "description": "Our Seattle area campus",
         "organization": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93"
+      }
+    },
+    "GetWorkspaceResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "ID of the workspace",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "description": "URL of the workspace",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "created_at": {
+          "title": "Created at",
+          "description": "Datetime when workspace was created",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "description": "Datetime when workspace was last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the workspace",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "description": "Slug of the workspace",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the workspace",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "organization": {
+          "title": "Organization",
+          "description": "Organization of the workspace",
+          "type": "object",
+          "readOnly": true
+        },
+        "location": {
+          "title": "Location",
+          "description": "Root location of the workspace",
+          "type": "object",
+          "readOnly": true
+        }
+      },
+      "example": {
+        "id": "695D2753-4A29-4853-B85D-B1A7462B1FF8",
+        "url": "https://api.routegy.com/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8",
+        "created_at": "2020-03-27T23:09:35+0000",
+        "updated_at": "2020-03-27T23:09:35+0000",
+        "name": "Seattle Campus",
+        "slug": "seattle-campus",
+        "description": "Our Seattle area campus",
+        "organization": {
+          "id": "1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+          "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93",
+          "name": "My Test Organization",
+          "slug": "my-test-organization",
+          "description": "Organization where I test things"
+        },
+        "location": {
+          "id": "0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
+          "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8/locations/0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
+          "name": "Seattle Campus",
+          "slug": "seattle-campus",
+          "description": "Root location for Seattle Campus",
+          "level": 0,
+          "workspace": "695D2753-4A29-4853-B85D-B1A7462B1FF8"
+        }
       }
     }
   },
