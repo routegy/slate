@@ -53,14 +53,14 @@ Operations for the Public API.
 
 <a href="https://docs.routegy.com/topic/public-api/">External documentation</a>
 
-## Get touchpoint from a code short id
+## Get app from a code short id
 
-<a id="opIdpublic_codes_touchpoint"></a>
+<a id="opIdpublic_codes_app"></a>
 
 > Code samples
 
 ```http
-GET https://api.routegy.com/public/codes/{short_id}/touchpoint HTTP/1.1
+GET https://api.routegy.com/public/codes/{short_id}/app HTTP/1.1
 Host: api.routegy.com
 Accept: application/json
 
@@ -68,7 +68,7 @@ Accept: application/json
 
 ```shell
 # You can also use wget
-curl -X GET https://api.routegy.com/public/codes/{short_id}/touchpoint \
+curl -X GET https://api.routegy.com/public/codes/{short_id}/app \
   -H 'Accept: application/json'
 
 ```
@@ -79,7 +79,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('https://api.routegy.com/public/codes/{short_id}/touchpoint', headers = headers)
+r = requests.get('https://api.routegy.com/public/codes/{short_id}/app', headers = headers)
 
 print(r.json())
 
@@ -93,7 +93,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'https://api.routegy.com/public/codes/{short_id}/touchpoint',
+result = RestClient.get 'https://api.routegy.com/public/codes/{short_id}/app',
   params: {
   }, headers: headers
 
@@ -116,7 +116,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://api.routegy.com/public/codes/{short_id}/touchpoint", data)
+    req, err := http.NewRequest("GET", "https://api.routegy.com/public/codes/{short_id}/app", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -126,11 +126,11 @@ func main() {
 
 ```
 
-`GET /public/codes/{short_id}/touchpoint`
+`GET /public/codes/{short_id}/app`
 
-Get touchpoint from code short id.
+Get app from code short id.
 
-<h3 id="get-touchpoint-from-a-code-short-id-parameters">Parameters</h3>
+<h3 id="get-app-from-a-code-short-id-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -145,13 +145,13 @@ Get touchpoint from code short id.
   "name": "Out of coffee?",
   "slug": "out-of-coffee",
   "description": "Let us know so we can refill the pot",
-  "location": {
+  "group": {
     "name": "Break room",
     "slug": "break-room",
     "description": "Employee break room",
     "breadcrumbs": "Office / Floor 1"
   },
-  "schema": {
+  "pattern": {
     "name": "Coffee Machine",
     "slug": "coffee-machine",
     "description": "Report supply chain issues related to coffee machines",
@@ -189,11 +189,11 @@ Get touchpoint from code short id.
 }
 ```
 
-<h3 id="get-touchpoint-from-a-code-short-id-responses">Responses</h3>
+<h3 id="get-app-from-a-code-short-id-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[GetCodeTouchPointResponse](#schemagetcodetouchpointresponse)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success|[GetCodeAppResponse](#schemagetcodeappresponse)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
@@ -203,14 +203,14 @@ Get touchpoint from code short id.
 This operation does not require authentication
 </aside>
 
-## Create touch for a touchpoint from a code short id
+## Create event for an app from a code short id
 
-<a id="opIdpublic_codes_touch"></a>
+<a id="opIdpublic_codes_event"></a>
 
 > Code samples
 
 ```http
-POST https://api.routegy.com/public/codes/{short_id}/touch HTTP/1.1
+POST https://api.routegy.com/public/codes/{short_id}/event HTTP/1.1
 Host: api.routegy.com
 Accept: application/json
 
@@ -218,7 +218,7 @@ Accept: application/json
 
 ```shell
 # You can also use wget
-curl -X POST https://api.routegy.com/public/codes/{short_id}/touch \
+curl -X POST https://api.routegy.com/public/codes/{short_id}/event \
   -H 'Accept: application/json'
 
 ```
@@ -229,7 +229,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.post('https://api.routegy.com/public/codes/{short_id}/touch', headers = headers)
+r = requests.post('https://api.routegy.com/public/codes/{short_id}/event', headers = headers)
 
 print(r.json())
 
@@ -243,7 +243,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.post 'https://api.routegy.com/public/codes/{short_id}/touch',
+result = RestClient.post 'https://api.routegy.com/public/codes/{short_id}/event',
   params: {
   }, headers: headers
 
@@ -266,7 +266,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "https://api.routegy.com/public/codes/{short_id}/touch", data)
+    req, err := http.NewRequest("POST", "https://api.routegy.com/public/codes/{short_id}/event", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -276,11 +276,11 @@ func main() {
 
 ```
 
-`POST /public/codes/{short_id}/touch`
+`POST /public/codes/{short_id}/event`
 
-Create a new touch for a touchpoint referenced from a code short id.
+Create a new event for an app referenced from a code short id.
 
-<h3 id="create-touch-for-a-touchpoint-from-a-code-short-id-parameters">Parameters</h3>
+<h3 id="create-event-for-an-app-from-a-code-short-id-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -296,11 +296,11 @@ Create a new touch for a touchpoint referenced from a code short id.
 }
 ```
 
-<h3 id="create-touch-for-a-touchpoint-from-a-code-short-id-responses">Responses</h3>
+<h3 id="create-event-for-an-app-from-a-code-short-id-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|[CodeTouchCreatedResponse](#schemacodetouchcreatedresponse)|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|[CodeEventCreatedResponse](#schemacodeeventcreatedresponse)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[BadRequestResponse](#schemabadrequestresponse)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|[UnauthorizedResponse](#schemaunauthorizedresponse)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|[ForbiddenResponse](#schemaforbiddenresponse)|
@@ -416,7 +416,7 @@ Get code by its ID.
   "created_at": "2020-03-27T23:09:35+0000",
   "updated_at": "2020-03-27T23:09:35+0000",
   "short_id": "ax7dkEg",
-  "touch_point": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
+  "app": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
 }
 ```
 
@@ -535,7 +535,7 @@ Get code by its short ID.
   "created_at": "2020-03-27T23:09:35+0000",
   "updated_at": "2020-03-27T23:09:35+0000",
   "short_id": "ax7dkEg",
-  "touch_point": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
+  "app": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
 }
 ```
 
@@ -812,9 +812,9 @@ Create a new organization.
       "quotas": [
         {
           "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-          "name": "Touchpoints (20)",
-          "slug": "touchpoints-20",
-          "description": "Limit the number of touchpoints to 20",
+          "name": "Apps (20)",
+          "slug": "apps-20",
+          "description": "Limit the number of apps to 20",
           "value": 20
         }
       ]
@@ -963,9 +963,9 @@ Get organization by its ID.
       "quotas": [
         {
           "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-          "name": "Touchpoints (20)",
-          "slug": "touchpoints-20",
-          "description": "Limit the number of touchpoints to 20",
+          "name": "Apps (20)",
+          "slug": "apps-20",
+          "description": "Limit the number of apps to 20",
           "value": 20
         }
       ]
@@ -1127,9 +1127,9 @@ Update organization by its id
       "quotas": [
         {
           "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-          "name": "Touchpoints (20)",
-          "slug": "touchpoints-20",
-          "description": "Limit the number of touchpoints to 20",
+          "name": "Apps (20)",
+          "slug": "apps-20",
+          "description": "Limit the number of apps to 20",
           "value": 20
         }
       ]
@@ -1291,9 +1291,9 @@ Patch organization by its id
       "quotas": [
         {
           "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-          "name": "Touchpoints (20)",
-          "slug": "touchpoints-20",
-          "description": "Limit the number of touchpoints to 20",
+          "name": "Apps (20)",
+          "slug": "apps-20",
+          "description": "Limit the number of apps to 20",
           "value": 20
         }
       ]
@@ -2141,12 +2141,12 @@ Get workspace from its id.
     "slug": "my-test-organization",
     "description": "Organization where I test things"
   },
-  "location": {
+  "group": {
     "id": "0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
-    "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8/locations/0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
+    "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8/groups/0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
     "name": "Seattle Campus",
     "slug": "seattle-campus",
-    "description": "Root location for Seattle Campus",
+    "description": "Root group for Seattle Campus",
     "level": 0,
     "workspace": "695D2753-4A29-4853-B85D-B1A7462B1FF8"
   }
@@ -2377,7 +2377,7 @@ Response containing a list of activities
   "created_at": "2020-03-27T23:09:35+0000",
   "updated_at": "2020-03-27T23:09:35+0000",
   "short_id": "ax7dkEg",
-  "touch_point": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
+  "app": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
 }
 
 ```
@@ -2391,14 +2391,14 @@ Response containing a list of activities
 |created_at|string(date-time)|false|read-only|Datetime when the code was created|
 |updated_at|string(date-time)|false|read-only|Datetime when the code was last updated|
 |short_id|string|false|read-only|Short ID to use when referencing the code in the public API|
-|touch_point|string(uuid)|false|none|ID of the touchpoint for the code|
+|app|string(uuid)|false|none|ID of the app for the code|
 
-<h2 id="tocS_CodeTouchCreatedResponse">CodeTouchCreatedResponse</h2>
+<h2 id="tocS_CodeEventCreatedResponse">CodeEventCreatedResponse</h2>
 <!-- backwards compatibility -->
-<a id="schemacodetouchcreatedresponse"></a>
-<a id="schema_CodeTouchCreatedResponse"></a>
-<a id="tocScodetouchcreatedresponse"></a>
-<a id="tocscodetouchcreatedresponse"></a>
+<a id="schemacodeeventcreatedresponse"></a>
+<a id="schema_CodeEventCreatedResponse"></a>
+<a id="tocScodeeventcreatedresponse"></a>
+<a id="tocscodeeventcreatedresponse"></a>
 
 ```json
 {
@@ -2411,27 +2411,27 @@ Response containing a list of activities
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|string(uuid)|false|read-only|ID of the touch that was created|
+|id|string(uuid)|false|read-only|ID of the event that was created|
 
-<h2 id="tocS_GetCodeTouchPointResponse">GetCodeTouchPointResponse</h2>
+<h2 id="tocS_GetCodeAppResponse">GetCodeAppResponse</h2>
 <!-- backwards compatibility -->
-<a id="schemagetcodetouchpointresponse"></a>
-<a id="schema_GetCodeTouchPointResponse"></a>
-<a id="tocSgetcodetouchpointresponse"></a>
-<a id="tocsgetcodetouchpointresponse"></a>
+<a id="schemagetcodeappresponse"></a>
+<a id="schema_GetCodeAppResponse"></a>
+<a id="tocSgetcodeappresponse"></a>
+<a id="tocsgetcodeappresponse"></a>
 
 ```json
 {
   "name": "Out of coffee?",
   "slug": "out-of-coffee",
   "description": "Let us know so we can refill the pot",
-  "location": {
+  "group": {
     "name": "Break room",
     "slug": "break-room",
     "description": "Employee break room",
     "breadcrumbs": "Office / Floor 1"
   },
-  "schema": {
+  "pattern": {
     "name": "Coffee Machine",
     "slug": "coffee-machine",
     "description": "Report supply chain issues related to coffee machines",
@@ -2474,15 +2474,15 @@ Response containing a list of activities
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|name|string|false|none|Name of the touchpoint|
-|description|string|false|none|Description of the touchpoint|
-|slug|string(slug)|false|read-only|Slug of the touchpoint|
-|location|object|false|none|Location of the touchpoint|
-|» name|string|false|none|Name of the location|
-|» description|string|false|none|Description of the location|
-|» slug|string(slug)|false|read-only|Slug of the location|
-|» breadcrumbs|string|false|read-only|Breadcrumbs of the location|
-|schema|object|false|none|Schema of the touchpoint|
+|name|string|false|none|Name of the app|
+|description|string|false|none|Description of the app|
+|slug|string(slug)|false|read-only|Slug of the app|
+|group|object|false|none|Group of the app|
+|» name|string|false|none|Name of the group|
+|» description|string|false|none|Description of the group|
+|» slug|string(slug)|false|read-only|Slug of the group|
+|» breadcrumbs|string|false|read-only|Breadcrumbs of the group|
+|schema|object|false|none|Schema of the app|
 |» name|string|false|none|Name of the schema|
 |» description|string|false|none|Description of the schema|
 |» slug|string(slug)|false|read-only|Slug of the schema|
@@ -2617,9 +2617,9 @@ Response containing a list of organizations
       "quotas": [
         {
           "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-          "name": "Touchpoints (20)",
-          "slug": "touchpoints-20",
-          "description": "Limit the number of touchpoints to 20",
+          "name": "Apps (20)",
+          "slug": "apps-20",
+          "description": "Limit the number of apps to 20",
           "value": 20
         }
       ]
@@ -2680,9 +2680,9 @@ Response containing a list of organizations
       "quotas": [
         {
           "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-          "name": "Touchpoints (20)",
-          "slug": "touchpoints-20",
-          "description": "Limit the number of touchpoints to 20",
+          "name": "Apps (20)",
+          "slug": "apps-20",
+          "description": "Limit the number of apps to 20",
           "value": 20
         }
       ]
@@ -2769,9 +2769,9 @@ Response containing a list of organizations
       "quotas": [
         {
           "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-          "name": "Touchpoints (20)",
-          "slug": "touchpoints-20",
-          "description": "Limit the number of touchpoints to 20",
+          "name": "Apps (20)",
+          "slug": "apps-20",
+          "description": "Limit the number of apps to 20",
           "value": 20
         }
       ]
@@ -2858,9 +2858,9 @@ Response containing a list of organizations
       "quotas": [
         {
           "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-          "name": "Touchpoints (20)",
-          "slug": "touchpoints-20",
-          "description": "Limit the number of touchpoints to 20",
+          "name": "Apps (20)",
+          "slug": "apps-20",
+          "description": "Limit the number of apps to 20",
           "value": 20
         }
       ]
@@ -3035,12 +3035,12 @@ Response containing a list of workspaces
     "slug": "my-test-organization",
     "description": "Organization where I test things"
   },
-  "location": {
+  "group": {
     "id": "0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
-    "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8/locations/0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
+    "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8/groups/0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
     "name": "Seattle Campus",
     "slug": "seattle-campus",
-    "description": "Root location for Seattle Campus",
+    "description": "Root group for Seattle Campus",
     "level": 0,
     "workspace": "695D2753-4A29-4853-B85D-B1A7462B1FF8"
   }
@@ -3060,5 +3060,5 @@ Response containing a list of workspaces
 |slug|string(slug)|false|read-only|Slug of the workspace|
 |description|string|false|read-only|Description of the workspace|
 |organization|object|false|read-only|Organization of the workspace|
-|location|object|false|read-only|Root location of the workspace|
+|group|object|false|read-only|Root group of the workspace|
 

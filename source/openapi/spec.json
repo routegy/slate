@@ -63,11 +63,11 @@
     }
   ],
   "paths": {
-    "/public/codes/{short_id}/touchpoint": {
+    "/public/codes/{short_id}/app": {
       "get": {
-        "operationId": "public_codes_touchpoint",
-        "summary": "Get touchpoint from a code short id",
-        "description": "Get touchpoint from code short id.",
+        "operationId": "public_codes_app",
+        "summary": "Get app from a code short id",
+        "description": "Get app from code short id.",
         "parameters": [
 
         ],
@@ -77,7 +77,7 @@
         "responses": {
           "200": {
             "description": "Success",
-            "schema": { "$ref": "#/definitions/GetCodeTouchPointResponse" }
+            "schema": { "$ref": "#/definitions/GetCodeAppResponse" }
           },
           "400": {
             "description": "Bad Request",
@@ -111,11 +111,11 @@
         }
       ]
     },
-    "/public/codes/{short_id}/touch": {
+    "/public/codes/{short_id}/event": {
       "post": {
-        "operationId": "public_codes_touch",
-        "summary": "Create touch for a touchpoint from a code short id",
-        "description": "Create a new touch for a touchpoint referenced from a code short id.",
+        "operationId": "public_codes_event",
+        "summary": "Create event for an app from a code short id",
+        "description": "Create a new event for an app referenced from a code short id.",
         "parameters": [
 
         ],
@@ -125,7 +125,7 @@
         "responses": {
           "201": {
             "description": "Created",
-            "schema": { "$ref": "#/definitions/CodeTouchCreatedResponse" }
+            "schema": { "$ref": "#/definitions/CodeEventCreatedResponse" }
           },
           "400": {
             "description": "Bad Request",
@@ -1085,9 +1085,9 @@
           "readOnly": true,
           "minLength": 1
         },
-        "touch_point": {
-          "title": "Touch point",
-          "description": "ID of the touchpoint for the code",
+        "app": {
+          "title": "App",
+          "description": "ID of the app for the code",
           "type": "string",
           "format": "uuid"
         }
@@ -1098,15 +1098,15 @@
         "created_at": "2020-03-27T23:09:35+0000",
         "updated_at": "2020-03-27T23:09:35+0000",
         "short_id": "ax7dkEg",
-        "touch_point": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
+        "app": "BADD03B4-CAEB-49DB-8B91-BEFAC4EB9EEB"
       }
     },
-    "CodeTouchCreatedResponse": {
+    "CodeEventCreatedResponse": {
       "type": "object",
       "properties": {
         "id": {
           "title": "Id",
-          "description": "ID of the touch that was created",
+          "description": "ID of the event that was created",
           "type": "string",
           "format": "uuid",
           "readOnly": true
@@ -1116,53 +1116,53 @@
         "id": "5A29D4AB-99AE-49A7-810B-CDA71FBBF9ED"
       }
     },
-    "GetCodeTouchPointResponse": {
+    "GetCodeAppResponse": {
       "type": "object",
       "properties": {
         "name": {
           "title": "Name",
           "type": "string",
-          "description": "Name of the touchpoint",
+          "description": "Name of the app",
           "maxLength": 128,
           "minLength": 1
         },
         "description": {
           "title": "Description",
           "type": "string",
-          "description": "Description of the touchpoint",
+          "description": "Description of the app",
           "maxLength": 2048
         },
         "slug": {
           "title": "Slug",
           "type": "string",
-          "description": "Slug of the touchpoint",
+          "description": "Slug of the app",
           "format": "slug",
           "pattern": "^[-a-zA-Z0-9_]+$",
           "readOnly": true,
           "minLength": 1
         },
-        "location": {
+        "group": {
           "type": "object",
-          "title": "Location",
-          "description": "Location of the touchpoint",
+          "title": "Group",
+          "description": "Group of the app",
           "properties": {
             "name": {
               "title": "Name",
               "type": "string",
-              "description": "Name of the location",
+              "description": "Name of the group",
               "maxLength": 128,
               "minLength": 1
             },
             "description": {
               "title": "Description",
               "type": "string",
-              "description": "Description of the location",
+              "description": "Description of the group",
               "maxLength": 2048
             },
             "slug": {
               "title": "Slug",
               "type": "string",
-              "description": "Slug of the location",
+              "description": "Slug of the group",
               "format": "slug",
               "pattern": "^[-a-zA-Z0-9_]+$",
               "readOnly": true,
@@ -1171,7 +1171,7 @@
             "breadcrumbs": {
               "title": "Breadcrumbs",
               "type": "string",
-              "description": "Breadcrumbs of the location",
+              "description": "Breadcrumbs of the group",
               "readOnly": true,
               "minLength": 1
             }
@@ -1180,7 +1180,7 @@
         "schema": {
           "type": "object",
           "title": "Schema",
-          "description": "Schema of the touchpoint",
+          "description": "Schema of the app",
           "properties": {
             "name": {
               "title": "Name",
@@ -1241,13 +1241,13 @@
         "name": "Out of coffee?",
         "slug": "out-of-coffee",
         "description": "Let us know so we can refill the pot",
-        "location": {
+        "group": {
           "name": "Break room",
           "slug": "break-room",
           "description": "Employee break room",
           "breadcrumbs": "Office / Floor 1"
         },
-        "schema": {
+        "pattern": {
           "name": "Coffee Machine",
           "slug": "coffee-machine",
           "description": "Report supply chain issues related to coffee machines",
@@ -1505,9 +1505,9 @@
             "quotas": [
               {
                 "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-                "name": "Touchpoints (20)",
-                "slug": "touchpoints-20",
-                "description": "Limit the number of touchpoints to 20",
+                "name": "Apps (20)",
+                "slug": "apps-20",
+                "description": "Limit the number of apps to 20",
                 "value": 20
               }
             ]
@@ -1608,9 +1608,9 @@
             "quotas": [
               {
                 "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-                "name": "Touchpoints (20)",
-                "slug": "touchpoints-20",
-                "description": "Limit the number of touchpoints to 20",
+                "name": "Apps (20)",
+                "slug": "apps-20",
+                "description": "Limit the number of apps to 20",
                 "value": 20
               }
             ]
@@ -1747,9 +1747,9 @@
             "quotas": [
               {
                 "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-                "name": "Touchpoints (20)",
-                "slug": "touchpoints-20",
-                "description": "Limit the number of touchpoints to 20",
+                "name": "Apps (20)",
+                "slug": "apps-20",
+                "description": "Limit the number of apps to 20",
                 "value": 20
               }
             ]
@@ -1886,9 +1886,9 @@
             "quotas": [
               {
                 "id": "303b3a7b-c03f-41e2-967d-1569e1a312e6",
-                "name": "Touchpoints (20)",
-                "slug": "touchpoints-20",
-                "description": "Limit the number of touchpoints to 20",
+                "name": "Apps (20)",
+                "slug": "apps-20",
+                "description": "Limit the number of apps to 20",
                 "value": 20
               }
             ]
@@ -2120,9 +2120,9 @@
           "type": "object",
           "readOnly": true
         },
-        "location": {
-          "title": "Location",
-          "description": "Root location of the workspace",
+        "group": {
+          "title": "Group",
+          "description": "Root group of the workspace",
           "type": "object",
           "readOnly": true
         }
@@ -2142,12 +2142,12 @@
           "slug": "my-test-organization",
           "description": "Organization where I test things"
         },
-        "location": {
+        "group": {
           "id": "0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
-          "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8/locations/0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
+          "url": "https://api.routegy.com/organizations/1E96C10E-658B-40C5-B7FF-A9D9A8F6BB93/workspaces/695D2753-4A29-4853-B85D-B1A7462B1FF8/groups/0B15559C-55D3-4C50-B8D8-6CCC13B77A47",
           "name": "Seattle Campus",
           "slug": "seattle-campus",
-          "description": "Root location for Seattle Campus",
+          "description": "Root group for Seattle Campus",
           "level": 0,
           "workspace": "695D2753-4A29-4853-B85D-B1A7462B1FF8"
         }
