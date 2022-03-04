@@ -49,9 +49,7 @@ Email: <a href="mailto:support@routegy.com">Support</a>
 
 <h1 id="routegy-api-public-api">Public API</h1>
 
-Operations for the Public API.
-
-<a href="https://docs.routegy.com/topic/public-api/">External documentation</a>
+Public API endpoints for retrieving a Routegy app for a given code, and creating events for them.
 
 ## Get app from a code short id
 
@@ -312,9 +310,7 @@ This operation does not require authentication
 
 <h1 id="routegy-api-management-api">Management API</h1>
 
-Operations for the Management API.
-
-<a href="https://docs.routegy.com/topic/management-api/">External documentation</a>
+Management API endpoints for operations on Routegy organizations, workspaces, apps, patterns, actions, actions types, and events.
 
 ## Get code by id
 
@@ -397,7 +393,7 @@ func main() {
 
 Get code by its ID. 
 
- Check out the [Topic: Code](https://docs.routegy.com/topic/codes/) and [Reference: Code](https://docs.routegy.com/reference/codes/) pages for more information.
+ Check out the [Codes](https://docs.routegy.com/reference/codes/) page for more information.
 
 <h3 id="get-code-by-id-parameters">Parameters</h3>
 
@@ -516,7 +512,7 @@ func main() {
 
 Get code by its short ID. 
 
- Check out the [Topic: Code](https://docs.routegy.com/topic/codes/) and [Reference: Code](https://docs.routegy.com/reference/codes/) pages for more information.
+ Check out the [Codes](https://docs.routegy.com/reference/codes/) page for more information.
 
 <h3 id="get-code-by-short-id-parameters">Parameters</h3>
 
@@ -758,7 +754,6 @@ Create a new organization.
 
 **Related:**
 * [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)
-* [Topic: Organization](https://docs.routegy.com/topic/organizations/)
 * [Reference: Organization](https://docs.routegy.com/reference/organizations/)
 
 > Body parameter
@@ -920,7 +915,6 @@ Get organization by its ID.
 
 **Related:**
 * [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)
-* [Topic: Organization](https://docs.routegy.com/topic/organizations/)
 * [Reference: Organization](https://docs.routegy.com/reference/organizations/)
 
 <h3 id="get-organization-by-id-parameters">Parameters</h3>

@@ -43,23 +43,21 @@
   "tags": [
     {
       "name": "Public API",
-      "description": "Operations for the Public API.",
-      "externalDocs": { "url": "https://docs.routegy.com/topic/public-api/" }
+      "description": "Public API endpoints for retrieving a Routegy app for a given code, and creating events for them.",
     },
     {
       "name": "Management API",
-      "description": "Operations for the Management API.",
-      "externalDocs": { "url": "https://docs.routegy.com/topic/management-api/" }
+      "description": "Management API endpoints for operations on Routegy organizations, workspaces, apps, patterns, actions, actions types, and events.",
     },
     {
       "name": "Codes",
       "description": "Operations related to Codes.",
-      "externalDocs": { "url": "https://docs.routegy.com/topic/codes/" }
+      "externalDocs": { "url": "https://docs.routegy.com/reference/codes/" }
     },
     {
       "name": "Organizations",
       "description": "Operations related to Organizations.",
-      "externalDocs": { "url": "https://docs.routegy.com/topic/organizations/" }
+      "externalDocs": { "url": "https://docs.routegy.com/reference/organizations/" }
     }
   ],
   "paths": {
@@ -163,7 +161,7 @@
       "get": {
         "operationId": "get_code_by_id",
         "summary": "Get code by id",
-        "description": "Get code by its ID. \n\n Check out the [Topic: Code](https://docs.routegy.com/topic/codes/) and [Reference: Code](https://docs.routegy.com/reference/codes/) pages for more information.",
+        "description": "Get code by its ID. \n\n Check out the [Codes](https://docs.routegy.com/reference/codes/) page for more information.",
         "parameters": [
 
         ],
@@ -209,7 +207,7 @@
       "get": {
         "operationId": "get_code_by_short_id",
         "summary": "Get code by short id",
-        "description": "Get code by its short ID. \n\n Check out the [Topic: Code](https://docs.routegy.com/topic/codes/) and [Reference: Code](https://docs.routegy.com/reference/codes/) pages for more information.",
+        "description": "Get code by its short ID. \n\n Check out the [Codes](https://docs.routegy.com/reference/codes/) page for more information.",
         "parameters": [
 
         ],
@@ -298,7 +296,7 @@
       "post": {
         "operationId": "create_organization",
         "summary": "Create new organization",
-        "description": "Create a new organization.\n\n**Related:**\n* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)\n* [Topic: Organization](https://docs.routegy.com/topic/organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations/)",
+        "description": "Create a new organization.\n\n**Related:**\n* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations/)",
         "parameters": [
           {
             "name": "data",
@@ -341,7 +339,7 @@
       "get": {
         "operationId": "get_organization",
         "summary": "Get organization by id",
-        "description": "Get organization by its ID.\n\n**Related:**\n* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)\n* [Topic: Organization](https://docs.routegy.com/topic/organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations/)",
+        "description": "Get organization by its ID.\n\n**Related:**\n* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations/)",
         "parameters": [
           {
             "name": "id",
