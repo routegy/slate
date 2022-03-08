@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Routegy API",
-    "description": "Welcome to the Routegy API docs!\n\nThese documents include both the Management API and the Public API.\n\nFor more information, be sure to check out our documentation website at <https://docs.routegy.com>.",
+    "description": "Welcome to the [Routegy](https://routegy.com) API docs!\n\nThese documents include both the Management API and the Public API.\n\nFor more information, be sure to check out our documentation website at <https://docs.routegy.com>.",
     "termsOfService": "https://www.routegy.com/terms-of-service/",
     "contact": {
       "email": "support@routegy.com"
@@ -43,21 +43,21 @@
   "tags": [
     {
       "name": "Public API",
-      "description": "Public API endpoints for retrieving a Routegy [app](https://docs.routegy.com/reference/apps/) for a given [code](https://docs.routegy.com/reference/codes/), and creating [events](https://docs.routegy.com/reference/events/) for them.",
+      "description": "Public API endpoints for retrieving a Routegy [app](https://docs.routegy.com/reference/apps.html) for a given [code](https://docs.routegy.com/reference/codes.html), and creating [events](https://docs.routegy.com/reference/events.html) for them.",
     },
     {
       "name": "Management API",
-      "description": "Management API endpoints for operations on Routegy [organizations](https://docs.routegy.com/reference/organizations/), [workspaces](https://docs.routegy.com/reference/workspaces/), [apps](https://docs.routegy.com/reference/apps/), [patterns](https://docs.routegy.com/reference/patterns/), [actions](https://docs.routegy.com/reference/actions), [action types](https://docs.routegy.com/reference/action-types), and [events](https://docs.routegy.com/reference/events).",
+      "description": "Management API endpoints for operations on Routegy [organizations](https://docs.routegy.com/reference/organizations.html), [workspaces](https://docs.routegy.com/reference/workspaces.html), [apps](https://docs.routegy.com/reference/apps.html), [patterns](https://docs.routegy.com/reference/patterns.html), [actions](https://docs.routegy.com/reference/actions.html), [action types](https://docs.routegy.com/reference/action-types.html), and [events](https://docs.routegy.com/reference/events.html).",
     },
     {
       "name": "Codes",
       "description": "Operations related to Codes.",
-      "externalDocs": { "url": "https://docs.routegy.com/reference/codes/" }
+      "externalDocs": { "url": "https://docs.routegy.com/reference/codes.html" }
     },
     {
       "name": "Organizations",
       "description": "Operations related to Organizations.",
-      "externalDocs": { "url": "https://docs.routegy.com/reference/organizations/" }
+      "externalDocs": { "url": "https://docs.routegy.com/reference/organizations.html" }
     }
   ],
   "paths": {
@@ -161,7 +161,7 @@
       "get": {
         "operationId": "get_code_by_id",
         "summary": "Get code by id",
-        "description": "Get code by its ID. \n\n Check out the [Codes](https://docs.routegy.com/reference/codes/) page for more information.",
+        "description": "Get code by its ID. \n\n Check out the [Codes](https://docs.routegy.com/reference/codes.html) page for more information.",
         "parameters": [
 
         ],
@@ -207,7 +207,7 @@
       "get": {
         "operationId": "get_code_by_short_id",
         "summary": "Get code by short id",
-        "description": "Get code by its short ID. \n\n Check out the [Codes](https://docs.routegy.com/reference/codes/) page for more information.",
+        "description": "Get code by its short ID. \n\n Check out the [Codes](https://docs.routegy.com/reference/codes.html) page for more information.",
         "parameters": [
 
         ],
@@ -296,7 +296,7 @@
       "post": {
         "operationId": "create_organization",
         "summary": "Create new organization",
-        "description": "Create a new organization.\n\n**Related:**\n* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations/)",
+        "description": "Create a new organization.\n\n**Related:**\n* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations.html)",
         "parameters": [
           {
             "name": "data",
@@ -339,7 +339,7 @@
       "get": {
         "operationId": "get_organization",
         "summary": "Get organization by id",
-        "description": "Get organization by its ID.\n\n**Related:**\n* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations/)",
+        "description": "Get organization by its ID.\n\n**Related:**\n* [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)\n* [Reference: Organization](https://docs.routegy.com/reference/organizations.html)",
         "parameters": [
           {
             "name": "id",

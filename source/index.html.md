@@ -23,7 +23,7 @@ headingLevel: 2
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-Welcome to the Routegy API docs!
+Welcome to the [Routegy](https://routegy.com) API docs!
 
 These documents include both the Management API and the Public API.
 
@@ -49,7 +49,7 @@ Email: <a href="mailto:support@routegy.com">Support</a>
 
 <h1 id="routegy-api-public-api">Public API</h1>
 
-Public API endpoints for retrieving a Routegy [app](https://docs.routegy.com/reference/apps/) for a given [code](https://docs.routegy.com/reference/codes/), and creating [events](https://docs.routegy.com/reference/events/) for them.
+Public API endpoints for retrieving a Routegy [app](https://docs.routegy.com/reference/apps.html) for a given [code](https://docs.routegy.com/reference/codes.html), and creating [events](https://docs.routegy.com/reference/events.html) for them.
 
 ## Get app from a code short id
 
@@ -310,7 +310,7 @@ This operation does not require authentication
 
 <h1 id="routegy-api-management-api">Management API</h1>
 
-Management API endpoints for operations on Routegy [organizations](https://docs.routegy.com/reference/organizations/), [workspaces](https://docs.routegy.com/reference/workspaces/), [apps](https://docs.routegy.com/reference/apps/), [patterns](https://docs.routegy.com/reference/patterns/), [actions](https://docs.routegy.com/reference/actions), [action types](https://docs.routegy.com/reference/action-types), and [events](https://docs.routegy.com/reference/events).
+Management API endpoints for operations on Routegy [organizations](https://docs.routegy.com/reference/organizations.html), [workspaces](https://docs.routegy.com/reference/workspaces.html), [apps](https://docs.routegy.com/reference/apps.html), [patterns](https://docs.routegy.com/reference/patterns.html), [actions](https://docs.routegy.com/reference/actions.html), [action types](https://docs.routegy.com/reference/action-types.html), and [events](https://docs.routegy.com/reference/events.html).
 
 ## Get code by id
 
@@ -393,7 +393,7 @@ func main() {
 
 Get code by its ID. 
 
- Check out the [Codes](https://docs.routegy.com/reference/codes/) page for more information.
+ Check out the [Codes](https://docs.routegy.com/reference/codes.html) page for more information.
 
 <h3 id="get-code-by-id-parameters">Parameters</h3>
 
@@ -512,7 +512,7 @@ func main() {
 
 Get code by its short ID. 
 
- Check out the [Codes](https://docs.routegy.com/reference/codes/) page for more information.
+ Check out the [Codes](https://docs.routegy.com/reference/codes.html) page for more information.
 
 <h3 id="get-code-by-short-id-parameters">Parameters</h3>
 
@@ -754,7 +754,7 @@ Create a new organization.
 
 **Related:**
 * [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)
-* [Reference: Organization](https://docs.routegy.com/reference/organizations/)
+* [Reference: Organization](https://docs.routegy.com/reference/organizations.html)
 
 > Body parameter
 
@@ -915,7 +915,7 @@ Get organization by its ID.
 
 **Related:**
 * [How-to: Create new organizations](https://docs.routegy.com/how-to/create-new-organizations/)
-* [Reference: Organization](https://docs.routegy.com/reference/organizations/)
+* [Reference: Organization](https://docs.routegy.com/reference/organizations.html)
 
 <h3 id="get-organization-by-id-parameters">Parameters</h3>
 
