@@ -49,7 +49,7 @@ Email: <a href="mailto:support@routegy.com">Support</a>
 
 <h1 id="routegy-api-public-api">Public API</h1>
 
-Public API endpoints for retrieving a Routegy app for a given code, and creating events for them.
+Public API endpoints for retrieving a Routegy [app](https://docs.routegy.com/reference/apps/) for a given [code](https://docs.routegy.com/reference/codes/), and creating [events](https://docs.routegy.com/reference/events/) for them.
 
 ## Get app from a code short id
 
@@ -310,7 +310,7 @@ This operation does not require authentication
 
 <h1 id="routegy-api-management-api">Management API</h1>
 
-Management API endpoints for operations on Routegy organizations, workspaces, apps, patterns, actions, actions types, and events.
+Management API endpoints for operations on Routegy [organizations](https://docs.routegy.com/reference/organizations/), [workspaces](https://docs.routegy.com/reference/workspaces/), [apps](https://docs.routegy.com/reference/apps/), [patterns](https://docs.routegy.com/reference/patterns/), [actions](https://docs.routegy.com/reference/actions), [action types](https://docs.routegy.com/reference/action-types), and [events](https://docs.routegy.com/reference/events).
 
 ## Get code by id
 
